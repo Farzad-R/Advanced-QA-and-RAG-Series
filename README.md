@@ -1,4 +1,4 @@
-# ChatPub
+# Advanced-RAG-Series
 This repository contains advanced LLM-based chatbots for RAG and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.).
 
 ### List of projects:
@@ -19,7 +19,7 @@ Project-folder
   ├── explore             <- Contains my exploration notebooks and the teaching material for YouTube videos. 
   ├── data                <- Contains the sample data for the project.
   ├── src                 <- Contains the source code(s) for executing the project.
-  |   └── utils           <- Contains all the necesssary project's modules. 
+  |   └── utils           <- Contains all the necessary project modules. 
   └── images              <- Contains all the images used in the user interface and the README file. 
 ```
 NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
