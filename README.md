@@ -1,13 +1,12 @@
 # Advanced-RAG-Series
-This repository contains advanced LLM-based chatbots for RAG and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.).
+This repository contains advanced LLM-based chatbots for Retrieval Augmented Generation (RAG) and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.). The repository provides guide on using both AzureOpenAI and OpenAI API for each project.
 
-### List of projects:
-- [x] [Chat-SQL-GPT](#Chat-SQL-GPT)
-- [ ] [csvGraphChatGPT](#csvGraphChatGPT)
-- [ ] [csvGraph-RAG-GPT](#csvGraph-RAG-GPT)
-- [ ] [DocGraph-RAG-GPT](#DocGraph-RAG-GPT)
+## List of projects:
+- [x] [SQL-TabularData-Q&A-With-GPT](#SQL-TabularData-Q&A-With-GPT)
+- [x] [TabularData-KnowledgeGraph-RAG-GPT](#TabularData-KnowledgeGraph-RAG-GPT)
+- [ ] [Doc-KnowledgeGraph-RAG-GPT](#Doc-KnowledgeGraph-RAG-GPT)
 
-General structure of the projects:
+## General structure of the projects:
 
 ```
 Project-folder
@@ -25,18 +24,41 @@ Project-folder
 NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
 
 ## Project description:
-<!-- ============= -->
-<!-- Chat-SQL -->
-<!-- ============= -->
+<!-- ============================ -->
+<!-- SQL-TabularData-Q&A-With-GPT -->
+<!-- ============================ -->
 <a id="Chat-SQL"></a>
-<h3><a style=" white-space:nowrap; " href=""><b>Chat-SQL-GPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href=""><b>SQL-TabularData-Q&A-With-GPT:</b></a></h3>
 <p>
-Chat-SQL-GPT is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, and <u>SQLite</u> and allows users to interact (perform Q&A) with SQL databases using natrual language. It also allows them to chat with <u>CSV</u> and <u>XLSX</u> files by converting them automatically to SQLite database.
+`SQL-TabularData-Q&A-With-GPT` is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, and <u>SQLite</u> and allows users to interact (perform Q&A) with SQL databases using natrual language. It also allows them to chat with <u>CSV</u> and <u>XLSX</u> files by converting them automatically to SQLite database.
 
 **Features:**
 
 - Chat with SQL data.
 - Chat with preprocessed CSV and XLSX data.
-- Chat with uploaded CSV and XSLX files during the interaction with the user interface. 
+- Chat with uploaded CSV and XSLX files during the interaction with the user interface.
+
+**Databases:**
+- Diabetes dataset: [Link](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset?resource=download&select=diabetes.csv)
+- Cancer dataset: [Link](https://www.kaggle.com/datasets/rohansahana/breast-cancer-dataset-for-beginners?select=train.csv)
+- Chinook SQL database: [Link](https://database.guide/2-sample-databases-sqlite/)
+
+**YouTube video:**: TBD
+
+<!-- ================================== -->
+<!-- TabularData-KnowledgeGraph-RAG-GPT -->
+<!-- ================================== -->
+<a id="TabularData-KnowledgeGraph-RAG-GPT"></a>
+<h3><a style=" white-space:nowrap; " href=""><b>Chat-SQL-GPT:</b></a></h3>
+<p>
+`TabularData-KnowledgeGraph-RAG-GPT` is a chatbot that utilizes <u>knowledge graph</u>, <u>GPT 3.5</u>, <u>Langchain graph agent</u>, and <u>Neo4j</u> graph database and allows users to interact (perform <u>Q&A and RAG</u>) with Tabular databases (CSV, XLSX, etc.) using natrual language. This project also demonstrates an approach for cunstructing the knowledge graph from unstructured data by leveraging LLMs.
+
+**Features:**
+- Chat with a graphDB created from tabular data.
+- RAG with a graphDB created from tabular data.
+
+**Databases:**
+- Movie dataset: [Link](https://raw.githubusercontent.com/tomasonjo/blog-datasets/main/movies/movies_small.csv)
+- Medical reports dataset: [Link](https://github.com/neo4j-partners/neo4j-generative-ai-azure/tree/main/ingestion/data)
 
 **YouTube video:**: TBD
