@@ -22,8 +22,8 @@ class LoadConfig:
         self.load_chroma_client()
         self.load_rag_config(app_config=app_config)
 
-        # Clean up the upload csv SQL DB if it exists on every fresh run of the chatbot
-        self.remove_directory(self.uploaded_files_sqldb_directory)
+        # Un comment the code below if you want to clean up the upload csv SQL DB on every fresh run of the chatbot. (if it exists)
+        # self.remove_directory(self.uploaded_files_sqldb_directory)
 
     def load_directories(self, app_config):
         self.stored_csv_xlsx_directory = here(

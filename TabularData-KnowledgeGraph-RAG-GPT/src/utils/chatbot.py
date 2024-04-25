@@ -9,12 +9,24 @@ APPCFG = LoadConfig()
 
 class ChatBot:
     """
-    Class representing a chatbot with the ability to query the Neo4j GrapDB.
-
-    This class provides a static method for responding to user queries.
+    A class designed to handle chatbot responses based on various functionalities.
+    
+    This class integrates with a GraphDB for question-answering and retrieval-augmented generation,
+    helping to provide appropriate responses in a conversational setting.
     """
     @staticmethod
     def respond(chatbot: List, message: str, chatbot_functionality: str) -> Tuple:
+        """
+        Generate a response to a user's message based on specified chatbot functionality.
+        
+        Args:
+            chatbot (List): A list representing the chatbot's conversation history.
+            message (str): The user's message to which the chatbot will respond.
+            chatbot_functionality (str): A string specifying the chatbot's current functionality.
+
+        Returns:
+            Tuple[str, List]: A tuple containing an empty string and the updated chatbot conversation list.
+        """
         if chatbot_functionality == "Q&A with GraphDB":
             chain_response = APPCFG.chain.invoke({"query": message})
             response = chain_response["result"]
