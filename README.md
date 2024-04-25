@@ -4,7 +4,7 @@ This repository contains advanced LLM-based chatbots for Retrieval Augmented Gen
 ## List of projects:
 - [x] [SQL-TabularData-Q&A-RAG-GPT](#SQL-TabularData-Q&A-RAG-GPT)
 - [x] [TabularData-KnowledgeGraph-RAG-GPT](#TabularData-KnowledgeGraph-RAG-GPT)
-- [ ] [Doc-KnowledgeGraph-RAG-GPT](#Doc-KnowledgeGraph-RAG-GPT)
+- [ ] [Document-KnowledgeGraph-RAG-GPT](#Document-KnowledgeGraph-RAG-GPT)
 
 ## General structure of the projects:
 
@@ -28,7 +28,7 @@ NOTE: This is the general structure of the projects, however there might be smal
 <!-- SQL-TabularData-Q&A-RAG-GPT -->
 <!-- =========================== -->
 <a id="Chat-SQL"></a>
-<h3><a style=" white-space:nowrap; " href=""><b>SQL-TabularData-Q&A-RAG-GPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/SQL-TabularData-Q%26A-RAG-GPT"><b>SQL-TabularData-Q&A-RAG-GPT:</b></a></h3>
 <p>
 `SQL-TabularData-Q&A-RAG-GPT` is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, <u>SQLite</u>, and <u>ChromaDB</u> and allows users to interact (perform <u>Q&A</u> and <u>RAG</u>) with SQL databases, CSV, and XLSX files using natrual language.
 
@@ -49,7 +49,7 @@ NOTE: This is the general structure of the projects, however there might be smal
 <!-- TabularData-KnowledgeGraph-RAG-GPT -->
 <!-- ================================== -->
 <a id="TabularData-KnowledgeGraph-RAG-GPT"></a>
-<h3><a style=" white-space:nowrap; " href=""><b>Chat-SQL-GPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/TabularData-KnowledgeGraph-RAG-GPT"><b>TabularData-KnowledgeGraph-RAG-GPT:</b></a></h3>
 <p>
 `TabularData-KnowledgeGraph-RAG-GPT` is a chatbot that utilizes <u>knowledge graph</u>, <u>GPT 3.5</u>, <u>Langchain graph agent</u>, and <u>Neo4j</u> graph database and allows users to interact (perform <u>Q&A and RAG</u>) with Tabular databases (CSV, XLSX, etc.) using natrual language. This project also demonstrates an approach for cunstructing the knowledge graph from unstructured data by leveraging LLMs.
 
@@ -62,3 +62,8 @@ NOTE: This is the general structure of the projects, however there might be smal
 - Medical reports dataset: [Link](https://github.com/neo4j-partners/neo4j-generative-ai-azure/tree/main/ingestion/data)
 
 **YouTube video:**: TBD
+
+
+<!-- =============================== -->
+<!-- Document-KnowledgeGraph-RAG-GPT -->
+<!-- =============================== -->
