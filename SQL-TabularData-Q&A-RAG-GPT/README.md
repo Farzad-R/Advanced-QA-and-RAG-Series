@@ -1,13 +1,14 @@
-# SQL-TabularData-Q&A-With-GPT
+# SQL-TabularData-Q&A-RAG-GPT
 
-`SQL-TabularData-Q&A-With-GPT` is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, and <u>SQLite</u> and allows users to interact (perform Q&A) with SQL databases using natrual language. It also allows them to chat with <u>CSV</u> and <u>XLSX</u> files by converting them automatically to SQLite database.
+`SQL-TabularData-Q&A-RAG-GPT` is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, <u>SQLite</u>, and <u>ChromaDB</u> and allows users to interact (perform <u>Q&A</u> and <u>RAG</u>) with SQL databases, CSV, and XLSX files using natrual language.
 
 **Key NOTE:** Remember to NOT use a SQL databbases with WRITE privileges. Use only READ and limit the scope. Otherwise your user could manupulate the data (e.g ask your chain to delete data).
 
 ## Features:
 - Chat with SQL data.
 - Chat with preprocessed CSV and XLSX data.
-- Chat with uploaded CSV and XSLX files during the interaction with the user interface. 
+- Chat with uploaded CSV and XSLX files during the interaction with the user interface.
+- RAG with Tabular datasets.
 
 **YouTube video:** TBD
 
