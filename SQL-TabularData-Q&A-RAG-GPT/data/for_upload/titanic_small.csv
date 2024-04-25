@@ -1,0 +1,31 @@
+Survived,Pclass,Name,Sex,Age,Siblings/Spouses Aboard,Parents/Children Aboard,Fare
+0,3,Mr. Owen Harris Braund,male,22,1,0,7.25
+1,1,Mrs. John Bradley (Florence Briggs Thayer) Cumings,female,38,1,0,71.2833
+1,3,Miss. Laina Heikkinen,female,26,0,0,7.925
+1,1,Mrs. Jacques Heath (Lily May Peel) Futrelle,female,35,1,0,53.1
+0,3,Mr. William Henry Allen,male,35,0,0,8.05
+0,3,Mr. James Moran,male,27,0,0,8.4583
+0,1,Mr. Timothy J McCarthy,male,54,0,0,51.8625
+0,3,Master. Gosta Leonard Palsson,male,2,3,1,21.075
+1,3,Mrs. Oscar W (Elisabeth Vilhelmina Berg) Johnson,female,27,0,2,11.1333
+1,2,Mrs. Nicholas (Adele Achem) Nasser,female,14,1,0,30.0708
+1,3,Miss. Marguerite Rut Sandstrom,female,4,1,1,16.7
+1,1,Miss. Elizabeth Bonnell,female,58,0,0,26.55
+0,3,Mr. William Henry Saundercock,male,20,0,0,8.05
+0,3,Mr. Anders Johan Andersson,male,39,1,5,31.275
+0,3,Miss. Hulda Amanda Adolfina Vestrom,female,14,0,0,7.8542
+1,2,Mrs. (Mary D Kingcome) Hewlett,female,55,0,0,16
+0,3,Master. Eugene Rice,male,2,4,1,29.125
+1,2,Mr. Charles Eugene Williams,male,23,0,0,13
+0,3,Mrs. Julius (Emelia Maria Vandemoortele) Vander Planke,female,31,1,0,18
+1,3,Mrs. Fatima Masselmani,female,22,0,0,7.225
+0,2,Mr. Joseph J Fynney,male,35,0,0,26
+1,2,Mr. Lawrence Beesley,male,34,0,0,13
+1,3,Miss. Anna McGowan,female,15,0,0,8.0292
+1,1,Mr. William Thompson Sloper,male,28,0,0,35.5
+0,3,Miss. Torborg Danira Palsson,female,8,3,1,21.075
+1,3,Mrs. Carl Oscar (Selma Augusta Emilia Johansson) Asplund,female,38,1,5,31.3875
+0,3,Mr. Farred Chehab Emir,male,26,0,0,7.225
+0,1,Mr. Charles Alexander Fortune,male,19,3,2,263
+1,3,Miss. Ellen O'Dwyer,female,24,0,0,7.8792
+0,3,Mr. Lalio Todoroff,male,23,0,0,7.8958

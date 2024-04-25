@@ -1,0 +1,21 @@
+directories:
+  stored_csv_xlsx_directory: data/csv_xlsx
+  sqldb_directory: data/sqldb.db
+  uploaded_files_sqldb_directory: data/uploaded_files_sqldb.db
+  stored_csv_xlsx_sqldb_directory: data/csv_xlsx_sqldb.db
+  persist_directory: data/chroma
+
+llm_config:
+    agent_llm_system_role: "Given the following user question, corresponding SQL query, and SQL result, answer the user question.\n
+    Question: {question}\n
+    SQL Query: {query}\n
+    SQL Result: {result}\n
+    Answer: 
+    "
+    rag_llm_system_role: "You will recieve the user's question along with the search results of that question over a database. Give the user the proper answer."
+    engine: "gpt-35-turbo"
+    temperature: 0.0
+
+rag_config:
+  collection_name: titanic_small
+  top_k: 1
