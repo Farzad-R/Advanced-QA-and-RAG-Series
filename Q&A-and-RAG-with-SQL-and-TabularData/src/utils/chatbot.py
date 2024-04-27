@@ -47,7 +47,8 @@ class ChatBot:
                     db = SQLDatabase.from_uri(
                         f"sqlite:///{APPCFG.sqldb_directory}")
                     execute_query = QuerySQLDataBaseTool(db=db)
-                    write_query = create_sql_query_chain(APPCFG.langchain_llm, db)
+                    write_query = create_sql_query_chain(
+                        APPCFG.langchain_llm, db)
                     answer_prompt = PromptTemplate.from_template(
                         APPCFG.agent_llm_system_role)
                     answer = answer_prompt | APPCFG.langchain_llm | StrOutputParser()
@@ -82,7 +83,7 @@ class ChatBot:
                         db = SQLDatabase(engine=engine)
                     else:
                         chatbot.append(
-                            (message, f"SQL DB from the stored csv/xlsx files does not exist. Please first execute `src/prepare_csv_xlsx_db` module."))
+                            (message, f"SQL DB from the stored csv/xlsx files does not exist. Please first execute `src/prepare_csv_xlsx_sqlitedb.py` module."))
                         return "", chatbot, None
                 print(db.dialect)
                 print(db.get_usable_table_names())
@@ -93,13 +94,14 @@ class ChatBot:
 
             elif chat_type == "RAG with stored CSV/XLSX ChromaDB":
                 response = APPCFG.azure_openai_client.embeddings.create(
-                        input = message,
-                        model= APPCFG.embedding_model_name
-                    )
+                    input=message,
+                    model=APPCFG.embedding_model_name
+                )
                 query_embeddings = response.data[0].embedding
-                vectordb = APPCFG.chroma_client.get_collection(name=APPCFG.collection_name)
+                vectordb = APPCFG.chroma_client.get_collection(
+                    name=APPCFG.collection_name)
                 results = vectordb.query(
-                    query_embeddings = query_embeddings,
+                    query_embeddings=query_embeddings,
                     n_results=APPCFG.top_k
                 )
                 prompt = f"User's question: {message} \n\n Search results:\n {results}"
@@ -107,7 +109,7 @@ class ChatBot:
                 messages = [
                     {"role": "system", "content": str(
                         APPCFG.rag_llm_system_role
-                        )},
+                    )},
                     {"role": "user", "content": prompt}
                 ]
                 llm_response = APPCFG.azure_openai_client.chat.completions.create(

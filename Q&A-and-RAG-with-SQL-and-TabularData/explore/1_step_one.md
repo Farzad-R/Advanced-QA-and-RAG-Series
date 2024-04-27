@@ -10,11 +10,20 @@ Now create a database called `sqldb`:
 sqlite3 data/sqldb.db
 .read data/sql/<name of your sql database>.sql
 ```
+Example:
+```
+.read data/sql/Chinook_Sqlite.sql
+```
 
 This command will create a SQL database named `sqldb.db` in the `data` directory. Verify that it created the database
 ```
 SELECT * FROM <any Table name in your sql database> LIMIT 10;
 ```
+Example:
+```
+SELECT * FROM Artist LIMIT 10;
+```
+
 2. To prepare a SQL DB from your CSV and XLSX files, copy your files in `data/csv_xlsx` and in the terminal, from the project folder, execute:
 ```
 python src/prepare_csv_xlsx_db.py.

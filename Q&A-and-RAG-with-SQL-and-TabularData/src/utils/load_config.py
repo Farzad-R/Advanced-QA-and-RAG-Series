@@ -37,7 +37,7 @@ class LoadConfig:
         self.persist_directory = app_config["directories"]["persist_directory"]
 
     def load_llm_configs(self, app_config):
-        self.model_name = app_config["llm_config"]["engine"]
+        self.model_name = os.getenv("gpt_deployment_name")
         self.agent_llm_system_role = app_config["llm_config"]["agent_llm_system_role"]
         self.rag_llm_system_role = app_config["llm_config"]["rag_llm_system_role"]
         self.temperature = app_config["llm_config"]["temperature"]
@@ -48,19 +48,20 @@ class LoadConfig:
         azure_openai_endpoint = os.environ["OPENAI_API_BASE"]
         # This will be used for the GPT and embedding models
         self.azure_openai_client = AzureOpenAI(
-            api_key = azure_openai_api_key,  
-            api_version = os.getenv("OPENAI_API_VERSION"),
-            azure_endpoint = azure_openai_endpoint
-            )
+            api_key=azure_openai_api_key,
+            api_version=os.getenv("OPENAI_API_VERSION"),
+            azure_endpoint=azure_openai_endpoint
+        )
         self.langchain_llm = AzureChatOpenAI(
             openai_api_version=os.getenv("OPENAI_API_VERSION"),
             azure_deployment=self.model_name,
             model_name=self.model_name,
             temperature=self.temperature)
-        
+
     def load_chroma_client(self):
-        self.chroma_client = chromadb.PersistentClient(path=str(here(self.persist_directory)))
-    
+        self.chroma_client = chromadb.PersistentClient(
+            path=str(here(self.persist_directory)))
+
     def load_rag_config(self, app_config):
         self.collection_name = app_config["rag_config"]["collection_name"]
         self.top_k = app_config["rag_config"]["top_k"]
