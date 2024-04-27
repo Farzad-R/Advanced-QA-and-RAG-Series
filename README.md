@@ -23,6 +23,15 @@ Project-folder
 ```
 NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
 
+## Key Notes:
+**Key Note 1:** All the project uses Azure OpenAI. So, to use OpenAI API directly, just change the credentials and switch the models completions.
+
+**Key Note 2 :** When we interact with databases using LLM agents, good informative column names can help the agents to navigate easier through the database.
+
+**Key Note 3:** When we interact with databases using LLM agents, remember to NOT use the database with WRITE privileges. Use only READ and limit the scope. Otherwise your user can manupulate the data (e.g ask your chain to delete data).
+
+**Key Note 4:** Familiarity with database query languages such as Pandas for Python, SQL, and Cypher can enhance the user's ability to ask more better questions and have a richer interaction with the graph agent.
+
 ## Project description:
 <!-- ==================================== -->
 <!-- Q&A-and-RAG-with-SQL-and-TabularData -->
