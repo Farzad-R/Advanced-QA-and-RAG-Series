@@ -2,8 +2,8 @@
 This repository contains advanced LLM-based chatbots for Retrieval Augmented Generation (RAG) and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.). The repository provides guide on using both AzureOpenAI and OpenAI API for each project.
 
 ## List of projects:
-- [x] [SQL-TabularData-Q&A-RAG-GPT](#SQL-TabularData-Q&A-RAG-GPT)
-- [x] [TabularData-KnowledgeGraph-RAG-GPT](#TabularData-KnowledgeGraph-RAG-GPT)
+- [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
+- [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
 - [ ] [Document-KnowledgeGraph-RAG-GPT](#Document-KnowledgeGraph-RAG-GPT)
 
 ## General structure of the projects:
@@ -24,13 +24,13 @@ Project-folder
 NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
 
 ## Project description:
-<!-- =========================== -->
-<!-- SQL-TabularData-Q&A-RAG-GPT -->
-<!-- =========================== -->
+<!-- ==================================== -->
+<!-- Q&A-and-RAG-with-SQL-and-TabularData -->
+<!-- ==================================== -->
 <a id="Chat-SQL"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/SQL-TabularData-Q%26A-RAG-GPT"><b>SQL-TabularData-Q&A-RAG-GPT:</b></a></h3>
+<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/Q&A-and-RAG-with-SQL-and-TabularData"><b>Q&A-and-RAG-with-SQL-and-TabularData:</b></a></h3>
 
-`SQL-TabularData-Q&A-RAG-GPT` is a chatbot that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, <u>SQLite</u>, and <u>ChromaDB</u> and allows users to interact (perform <u>Q&A</u> and <u>RAG</u>) with SQL databases, CSV, and XLSX files using natrual language.
+`Q&A-and-RAG-with-SQL-and-TabularData` is a chatbot project that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, <u>SQLite</u>, and <u>ChromaDB</u> and allows users to interact (perform <u>Q&A</u> and <u>RAG</u>) with SQL databases, CSV, and XLSX files using natrual language.
 
 **Features:**
 - Chat with SQL data.
@@ -45,13 +45,13 @@ NOTE: This is the general structure of the projects, however there might be smal
 
 **YouTube video:**: TBD
 
-<!-- ================================== -->
-<!-- TabularData-KnowledgeGraph-RAG-GPT -->
-<!-- ================================== -->
-<a id="TabularData-KnowledgeGraph-RAG-GPT"></a>
-<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/TabularData-KnowledgeGraph-RAG-GPT"><b>TabularData-KnowledgeGraph-RAG-GPT:</b></a></h3>
+<!-- =========================================== -->
+<!-- KnowledgeGraph-Q&A-and-RAG-with-TabularData -->
+<!-- =========================================== -->
+<a id="KnowledgeGraph-Q&A-and-RAG-with-TabularData"></a>
+<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-RAG-Series/tree/main/KnowledgeGraph-Q&A-and-RAG-with-TabularData"><b>KnowledgeGraph-Q&A-and-RAG-with-TabularData:</b></a></h3>
 
-`TabularData-KnowledgeGraph-RAG-GPT` is a chatbot that utilizes <u>knowledge graph</u>, <u>GPT 3.5</u>, <u>Langchain graph agent</u>, and <u>Neo4j</u> graph database and allows users to interact (perform <u>Q&A and RAG</u>) with Tabular databases (CSV, XLSX, etc.) using natrual language. This project also demonstrates an approach for cunstructing the knowledge graph from unstructured data by leveraging LLMs.
+`KnowledgeGraph-Q&A-and-RAG-with-TabularData` is a chatbot project that utilizes <u>knowledge graph</u>, <u>GPT 3.5</u>, <u>Langchain graph agent</u>, and <u>Neo4j</u> graph database and allows users to interact (perform <u>Q&A and RAG</u>) with Tabular databases (CSV, XLSX, etc.) using natrual language. This project also demonstrates an approach for cunstructing the knowledge graph from unstructured data by leveraging LLMs.
 
 **Features:**
 - Chat with a graphDB created from tabular data.
