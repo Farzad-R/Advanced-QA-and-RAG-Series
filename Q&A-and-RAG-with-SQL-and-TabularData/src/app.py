@@ -6,7 +6,7 @@ from utils.ui_settings import UISettings
 
 with gr.Blocks() as demo:
     with gr.Tabs():
-        with gr.TabItem("SQL-CSV-XLSX-RAGGPT"):
+        with gr.TabItem("Q&A-and-RAG-with-SQL-and-TabularData"):
             ##############
             # First ROW:
             ##############
@@ -46,7 +46,7 @@ with gr.Blocks() as demo:
                         "Q&A with stored CSV/XLSX SQL-DB",
                         "RAG with stored CSV/XLSX ChromaDB",
                         "Q&A with Uploaded CSV/XLSX SQL-DB"
-                        ], value="Q&A with stored SQL-DB")
+                    ], value="Q&A with stored SQL-DB")
                 clear_button = gr.ClearButton([input_txt, chatbot])
             ##############
             # Process:
