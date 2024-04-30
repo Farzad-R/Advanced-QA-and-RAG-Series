@@ -56,14 +56,19 @@ python src/app.py
 ```
 7. Start chatting!
 
-## Project Schema
+## Movie Knowledge Graph
+<div align="center">
+  <img src="images/movie_KnowledgeGraph.png" alt="movie_KnowledgeGraph">
+</div>
+
+## Chatbot project Schema
 <div align="center">
   <img src="images/project_schema.png" alt="Schema">
 </div>
 
 ## Chatbot User Interface
 <div align="center">
-  <img src="images/UI.png" alt="ChatBot UI">
+  <img src="images/UI.png" alt="ChatBot_UI">
 </div>
 
 ## Databases:
