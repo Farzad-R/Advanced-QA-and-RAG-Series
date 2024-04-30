@@ -67,7 +67,14 @@ python src/prepare_csv_xlsx_db.py.
 
 This command will create a SQL database named `csv_xlsx_sqldb.db` in the `data` directory.
 
-3. To upload your datasets and chat with them during the interaction with the user interface:
+3. To prepare a vectorDB from your CSV and XLSX files, copy your files in `data/for_upload` and in the terminal, from the project folder, execute:
+```
+python src/prepare_csv_xlsx_vectordb.py
+```
+This command will create a VectorDB in `data/chroma` directory.
+
+
+4. To upload your datasets and chat with them during the interaction with the user interface:
 - Change the chat functioncality to `Process files`
 - Upload you files and wait for the message indicating the the database is ready.
 - Switch back the chat functioncality to `Chat`
