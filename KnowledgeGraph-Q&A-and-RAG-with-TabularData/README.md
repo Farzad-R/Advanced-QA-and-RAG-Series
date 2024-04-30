@@ -48,7 +48,7 @@ pip install -r requirements.txt
   - make sure this line is set as: `dbms.security.procedures.allowlist=apoc.*,gds.*,genai.*`
   - copy `neo4j-genai-plugin-5.17.0.jar` from `products` folder and paste it into `plugins`.
 
-4. Load your data, prepare the knowledge graph and inject the data into the Graph database. These steps are performed in `explore/Movie_sample_csv_data`, `1_load_and_save_movide_data.ipynb` and `2_GraphDB_QA_data_preparation.ipynb`.
+4. Load your data, prepare the knowledge graph and inject the data into the Graph database. These steps are performed in `explore/Movie_sample_csv_data`, `1_load_and_save_movide_data.ipynb` and `2_AzureOpenAI_GraphDB_RAG_data_preparation.ipynb`.
 5. Test your Graph database using direct cypher queries. Check `explore/3_query_movieDB_with_cypher.ipynb`
 6. Run the app:
 ```
