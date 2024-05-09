@@ -4,7 +4,7 @@ This repository contains advanced LLM-based chatbots for Retrieval Augmented Gen
 ## List of projects:
 - [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
 - [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
-- [ ] [Document-KnowledgeGraph-RAG-GPT](#Document-KnowledgeGraph-RAG-GPT)
+- [ ] [KnowledgeGraph-RAG-with-Text](#KnowledgeGraph-RAG-with-text)
 
 ## General structure of the projects:
 

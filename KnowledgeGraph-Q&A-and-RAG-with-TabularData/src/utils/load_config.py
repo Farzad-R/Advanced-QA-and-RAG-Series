@@ -32,7 +32,7 @@ class LoadConfig:
     def load_graph_db(self):
         NEO4J_URI = "bolt://localhost:7687"
         NEO4J_USERNAME = "neo4j"
-        NEO4J_PASSWORD = "moviesampleproject"
+        NEO4J_PASSWORD = "12345678"
         NEO4J_DATABASE = 'neo4j'
         self.graph = Neo4jGraph(url=NEO4J_URI, username=NEO4J_USERNAME,
                                 password=NEO4J_PASSWORD, database=NEO4J_DATABASE)

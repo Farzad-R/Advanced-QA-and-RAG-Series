@@ -36,6 +36,7 @@ cd TabularData-KnowledgeGraph-Q&A-With-GPT
 source ...Path to the environment/tabular-kg-env/bin/activate
 pip install -r requirements.txt
 ```
+
 ## Execution:
 1. Create and start a graphDB in Neo4j remotely or using the desktop app. (I used desktop app)
 2. Upgrade your graph to be at least `Version 5.17.0`.

@@ -10,7 +10,7 @@ APPCFG = LoadConfig()
 class ChatBot:
     """
     A class designed to handle chatbot responses based on various functionalities.
-    
+
     This class integrates with a GraphDB for question-answering and retrieval-augmented generation,
     helping to provide appropriate responses in a conversational setting.
     """
@@ -18,7 +18,7 @@ class ChatBot:
     def respond(chatbot: List, message: str, chatbot_functionality: str) -> Tuple:
         """
         Generate a response to a user's message based on specified chatbot functionality.
-        
+
         Args:
             chatbot (List): A list representing the chatbot's conversation history.
             message (str): The user's message to which the chatbot will respond.
@@ -31,7 +31,7 @@ class ChatBot:
             chain_response = APPCFG.chain.invoke({"query": message})
             response = chain_response["result"]
 
-        elif chatbot_functionality == "RAG with GraphDB":
+        elif chatbot_functionality == "RAG with GraphDB (vector search)":
             embeddings = APPCFG.client.embeddings.create(
                 input=message,
                 model=APPCFG.embedding_model_name
@@ -60,6 +60,7 @@ class ChatBot:
                     content=f"User question:\n{message}\n\n"+f"Search result:\n{str(search_result)}")
             ]
             response = APPCFG.llm(messages)
+            response = response.content
 
         chatbot.append((message, response))
         return "", chatbot
