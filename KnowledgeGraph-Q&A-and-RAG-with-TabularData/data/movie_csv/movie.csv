@@ -1,21 +1,21 @@
-movieId,released,title,actors,director,genres,imdbRating,tagline
-1,1995-11-22,Toy Story,Jim Varney|Tim Allen|Tom Hanks|Don Rickles,John Lasseter,Adventure|Animation|Children|Comedy|Fantasy,8.3,The adventure takes off!
-2,1995-12-15,Jumanji,Robin Williams|Bradley Pierce|Kirsten Dunst|Jonathan Hyde,Joe Johnston,Adventure|Children|Fantasy,6.9,Roll the dice and unleash the excitement!
-3,1995-12-22,Grumpier Old Men,Walter Matthau|Ann-Margret|Jack Lemmon|Sophia Loren,Howard Deutch,Comedy|Romance,6.6,Still Yelling. Still Fighting. Still Ready for Love.
-4,1995-12-22,Waiting to Exhale,Whitney Houston|Lela Rochon|Angela Bassett|Loretta Devine,Forest Whitaker,Romance|Drama|Comedy,5.6,Friends are the people who let you be yourself... and never let you forget it.
-5,1995-12-08,Father of the Bride Part II,Steve Martin|Kimberly Williams-Paisley|Diane Keaton|Martin Short,Charles Shyer,Comedy,5.9,Just When His World Is Back To Normal... He's In For The Surprise Of His Life!
-6,1995-12-15,Heat,Al Pacino|Robert De Niro|Val Kilmer|Jon Voight,Michael Mann,Action|Crime|Thriller,8.2,A Los Angeles crime saga
-7,1995-12-15,Sabrina,Julia Ormond|Harrison Ford|Nancy Marchand|Greg Kinnear,Sydney Pollack,Comedy|Romance,6.2,You are cordially invited to the most surprising merger of the year.
-8,1995-12-22,Tom and Huck,Jonathan Taylor Thomas|Brad Renfro|Eric Schweig|Charles Rocket,Peter Hewitt,Children|Adventure,5.6,The Original Bad Boys.
-9,1995-12-22,Sudden Death,Jean-Claude Van Damme|Powers Boothe|Raymond J. Barry|Whittni Wright,Peter Hyams,Action,5.7,Terror goes into overtime.
-10,1995-11-17,GoldenEye,Pierce Brosnan|Famke Janssen|Sean Bean|Izabella Scorupco,Martin Campbell,Adventure|Action|Thriller,7.2,No limits. No fears. No substitutes.
-11,1995-11-17,"American President, The",Martin Sheen|Michael J. Fox|Michael Douglas|Annette Bening,Rob Reiner,Comedy|Romance|Drama,6.8,Why can't the most powerful man in the world have the one thing he wants most?
-12,1995-12-22,Dracula: Dead and Loving It,Peter MacNicol|Leslie Nielsen|Steven Weber|Amy Yasbeck,Mel Brooks,Comedy|Horror,5.8,Give blood...a whole new meaning.
-13,1995-12-22,Balto,Kevin Bacon|Bob Hoskins|Jim Cummings|Bridget Fonda,Simon Wells,Children|Adventure|Animation,7.1,Part Dog. Part Wolf. All Hero.
-14,1996-01-05,Nixon,Ed Harris|Anthony Hopkins|Powers Boothe|Joan Allen,Oliver Stone,Drama,7.1,He had greatness within his grasp.
-15,1995-12-22,Cutthroat Island,Geena Davis|Frank Langella|Matthew Modine|Maury Chaykin,Renny Harlin,Romance|Adventure|Action,5.6,The Course Has Been Set. There Is No Turning Back. Prepare Your Weapons. Summon Your Courage. Discover the Adventure of a Lifetime!
-16,1995-11-22,Casino,Robert De Niro|Joe Pesci|Sharon Stone|James Woods,Martin Scorsese,Drama|Crime,8.2,No one stays at the top forever.
-17,1996-01-26,Sense and Sensibility,James Fleet|Kate Winslet|Tom Wilkinson|Harriet Walter,Ang Lee,Drama|Romance,7.7,Lose your heart and come to your senses.
-18,1995-12-25,Four Rooms,Amanda De Cadenet|Valeria Golino|Madonna|Sammi Davis,Allison Anders|Robert Rodriguez|Quentin Tarantino| Alexandre Rockwell,Comedy,6.7,"Twelve outrageous guests. Four scandalous requests. And one lone bellhop, in his first day on the job, who's in for the wildest New year's Eve of his life."
-19,1995-11-10,Ace Ventura: When Nature Calls,Jim Carrey|Ian McNeice|Simon Callow|Maynard Eziashi,Steve Oedekerk,Comedy,6.3,New animals. New adventures. Same hair.
-20,1995-11-22,Money Train,Wesley Snipes|Robert Blake|Woody Harrelson|Jennifer Lopez,Joseph Ruben,Crime|Comedy|Thriller|Drama|Action,5.6,"Get on, or GET OUT THE WAY!"
+movieId,released,title,actors,director,genres,imdbRating,similar_movie,tagline,location
+1,1995-11-22,Toy Story,Jim Varney|Tim Allen|Tom Hanks|Don Rickles,John Lasseter,Adventure|Animation|Children|Comedy|Fantasy,8.3,Finding Nemo,The adventure takes off!,United States
+2,1995-12-15,Jumanji,Robin Williams|Bradley Pierce|Kirsten Dunst|Jonathan Hyde,Joe Johnston,Adventure|Children|Fantasy,6.9,Jumanji: Welcome to the Jungle,Roll the dice and unleash the excitement!,United States
+3,1995-12-22,Grumpier Old Men,Walter Matthau|Ann-Margret|Jack Lemmon|Sophia Loren,Howard Deutch,Comedy|Romance,6.6,The Bucket List,Still Yelling. Still Fighting. Still Ready for Love.,United States
+4,1995-12-22,Waiting to Exhale,Whitney Houston|Lela Rochon|Angela Bassett|Loretta Devine,Forest Whitaker,Romance|Drama|Comedy,5.6,The Best Man Holiday,Friends are the people who let you be yourself... and never let you forget it.,United States
+5,1995-12-08,Father of the Bride Part II,Steve Martin|Kimberly Williams-Paisley|Diane Keaton|Martin Short,Charles Shyer,Comedy,5.9,Cheaper by the Dozen,Just When His World Is Back To Normal... He's In For The Surprise Of His Life!,United States
+6,1995-12-15,Heat,Al Pacino|Robert De Niro|Val Kilmer|Jon Voight,Michael Mann,Action|Crime|Thriller,8.2,The Departed,A Los Angeles crime saga,United States
+7,1995-12-15,Sabrina,Julia Ormond|Harrison Ford|Nancy Marchand|Greg Kinnear,Sydney Pollack,Comedy|Romance,6.2,Notting Hill,You are cordially invited to the most surprising merger of the year.,United States
+8,1995-12-22,Tom and Huck,Jonathan Taylor Thomas|Brad Renfro|Eric Schweig|Charles Rocket,Peter Hewitt,Children|Adventure,5.6,The Adventures of Huck Finn,The Original Bad Boys.,United States
+9,1995-12-22,Sudden Death,Jean-Claude Van Damme|Powers Boothe|Raymond J. Barry|Whittni Wright,Peter Hyams,Action,5.7,Die Hard,Terror goes into overtime.,United States
+10,1995-11-17,GoldenEye,Pierce Brosnan|Famke Janssen|Sean Bean|Izabella Scorupco,Martin Campbell,Adventure|Action|Thriller,7.2,Mission Impossible,No limits. No fears. No substitutes.,United Kingdom
+11,1995-11-17,"American President, The",Martin Sheen|Michael J. Fox|Michael Douglas|Annette Bening,Rob Reiner,Comedy|Romance|Drama,6.8,Dave,Why can't the most powerful man in the world have the one thing he wants most?,United States
+12,1995-12-22,Dracula: Dead and Loving It,Peter MacNicol|Leslie Nielsen|Steven Weber|Amy Yasbeck,Mel Brooks,Comedy|Horror,5.8,Dead and Loving It: Young Frankenstein,Give blood...a whole new meaning.,United States
+13,1995-12-22,Balto,Kevin Bacon|Bob Hoskins|Jim Cummings|Bridget Fonda,Simon Wells,Children|Adventure|Animation,7.1,Spirit: Stallion of the Cimarron,Part Dog. Part Wolf. All Hero.,United States
+14,1996-01-05,Nixon,Ed Harris|Anthony Hopkins|Powers Boothe|Joan Allen,Oliver Stone,Drama,7.1,JFK,He had greatness within his grasp.,United States
+15,1995-12-22,Cutthroat Island,Geena Davis|Frank Langella|Matthew Modine|Maury Chaykin,Renny Harlin,Romance|Adventure|Action,5.6,Pirates of the Caribbean: The Curse of the Black Pearl,The Course Has Been Set. There Is No Turning Back. Prepare Your Weapons. Summon Your Courage. Discover the Adventure of a Lifetime!,Malta
+16,1995-11-22,Casino,Robert De Niro|Joe Pesci|Sharon Stone|James Woods,Martin Scorsese,Drama|Crime,8.2,Goodfellas,No one stays at the top forever.,United States
+17,1996-01-26,Sense and Sensibility,James Fleet|Kate Winslet|Tom Wilkinson|Harriet Walter,Ang Lee,Drama|Romance,7.7,Pride and Prejudice,Lose your heart and come to your senses.,United Kingdom
+18,1995-12-25,Four Rooms,Amanda De Cadenet|Valeria Golino|Madonna|Sammi Davis,Allison Anders|Robert Rodriguez|Quentin Tarantino| Alexandre Rockwell,Comedy,6.7,Pulp Fiction,"Twelve outrageous guests. Four scandalous requests. And one lone bellhop, in his first day on the job, who's in for the wildest New year's Eve of his life.",United States
+19,1995-11-10,Ace Ventura: When Nature Calls,Jim Carrey|Ian McNeice|Simon Callow|Maynard Eziashi,Steve Oedekerk,Comedy,6.3,The Mask,New animals. New adventures. Same hair.,United States
+20,1995-11-22,Money Train,Wesley Snipes|Robert Blake|Woody Harrelson|Jennifer Lopez,Joseph Ruben,Crime|Comedy|Thriller|Drama|Action,5.6,Speed,"Get on, or GET OUT THE WAY!",United States

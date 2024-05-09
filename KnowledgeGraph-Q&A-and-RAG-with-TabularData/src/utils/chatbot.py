@@ -27,11 +27,14 @@ class ChatBot:
         Returns:
             Tuple[str, List]: A tuple containing an empty string and the updated chatbot conversation list.
         """
-        if chatbot_functionality == "Q&A with GraphDB":
-            chain_response = APPCFG.chain.invoke({"query": message})
+        if chatbot_functionality == "Q&A with GraphDB (Simple Agent)":
+            chain_response = APPCFG.simple_chain.invoke({"query": message})
             response = chain_response["result"]
-
-        elif chatbot_functionality == "RAG with GraphDB (vector search)":
+        
+        elif chatbot_functionality == "Q&A with GraphDB (Improved Agent)":
+            response = APPCFG.improved_chain.invoke({"question": message})
+        
+        elif chatbot_functionality == "RAG with GraphDB":
             embeddings = APPCFG.client.embeddings.create(
                 input=message,
                 model=APPCFG.embedding_model_name

@@ -36,7 +36,11 @@ with gr.Blocks() as demo:
             with gr.Row() as row_two:
                 text_submit_btn = gr.Button(value="Submit text")
                 chatbot_functionality = gr.Dropdown(
-                    label="Functioncality", choices=["Q&A with GraphDB", "RAG with GraphDB (vector search)"], value="Q&A with GraphDB")
+                    label="Functioncality", choices=[
+                        "Q&A with GraphDB (Improved Agent)",
+                        "Q&A with GraphDB (Simple Agent)",
+                        "RAG with GraphDB"
+                        ], value="Q&A with GraphDB (Improved Agent)")
                 clear_button = gr.ClearButton([input_txt, chatbot])
             ##############
             # Process:

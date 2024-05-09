@@ -7,6 +7,7 @@ from langchain.chat_models import AzureChatOpenAI
 from langchain.chains import GraphCypherQAChain
 from langchain_community.graphs import Neo4jGraph
 from openai import AzureOpenAI
+from utils.improved_chain import PrepareImprovedAgent
 
 print("Environment variables are loaded:", load_dotenv())
 
@@ -52,5 +53,7 @@ class LoadConfig:
             azure_deployment=self.model_name,
             model_name=self.model_name,
             temperature=self.temperature)
-        self.chain = GraphCypherQAChain.from_llm(
+        self.simple_chain = GraphCypherQAChain.from_llm(
             graph=self.graph, llm=self.llm, verbose=True)
+        improved_chain_instance = PrepareImprovedAgent(graph=self.graph, llm=self.llm)
+        self.improved_chain = improved_chain_instance.run_pipeline()

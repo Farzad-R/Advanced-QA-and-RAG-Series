@@ -1,8 +1,10 @@
 
 
 llm_config:
-    system_message: "You will be given the user question along with the search result of that question over a Neo4j graph database. Give the user the proper answer."
-    model_name: "gpt-35-turbo-1106"
+    system_message: "You will be given the user question along with the search result of that question over a Neo4j graph database. Give the user the proper answer./
+     If the answer to the question is not clear from the search result, don't use your own knowledge to give the answer."
+    # model_name: "gpt-35-turbo-1106"
+    model_name: "gpt-35-turbo"
     embedding_model_name: "text-embedding-ada-002"
     temperature: 0.0
     
