@@ -5,7 +5,7 @@ from utils.ui_settings import UISettings
 
 with gr.Blocks() as demo:
     with gr.Tabs():
-        with gr.TabItem("TabularData-KnowledgeGraph-RAG-GPT"):
+        with gr.TabItem("KnowledgeGraph-Q&A-and-RAG-with-TabularData"):
             ##############
             # First ROW:
             ##############
