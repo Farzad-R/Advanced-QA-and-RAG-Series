@@ -52,7 +52,7 @@ NOTE: This is the general structure of the projects, however there might be smal
 - Cancer dataset: [Link](https://www.kaggle.com/datasets/rohansahana/breast-cancer-dataset-for-beginners?select=train.csv)
 - Chinook SQL database: [Link](https://database.guide/2-sample-databases-sqlite/)
 
-**YouTube video:**: [Link](https://youtu.be/ZtltjSjFPDg?si=YdIeYcFeP4yzTXKQ)
+**YouTube video:** [Link](https://youtu.be/ZtltjSjFPDg?si=YdIeYcFeP4yzTXKQ)
 
 <!-- =========================================== -->
 <!-- KnowledgeGraph-Q&A-and-RAG-with-TabularData -->
