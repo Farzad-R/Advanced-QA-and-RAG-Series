@@ -15,8 +15,3 @@ Prepare the environment
 8. Microsoft project
     - presentation
     - code review
-
-TODO:
-<!-- - Add the advanced agent to the chatbot -->
-- Add the how to learn page to the presentation
-<!-- - Create the second dataset + explain two approaches to merge datasets and create kg: DONE -->
