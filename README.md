@@ -4,7 +4,7 @@ This repository contains advanced LLM-based chatbots for Retrieval Augmented Gen
 ## List of projects:
 - [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
 - [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
-- [ ] [KnowledgeGraph-RAG-with-Text](#KnowledgeGraph-RAG-with-text)
+- [ ] [KnowledgeGraph-Q&A-and-RAG-with-Text](#KnowledgeGraph-Q&A-and-RAG-with-Text) - **UNDER DEVELOPMENT**
 
 ## General structure of the projects:
 
@@ -52,7 +52,7 @@ NOTE: This is the general structure of the projects, however there might be smal
 - Cancer dataset: [Link](https://www.kaggle.com/datasets/rohansahana/breast-cancer-dataset-for-beginners?select=train.csv)
 - Chinook SQL database: [Link](https://database.guide/2-sample-databases-sqlite/)
 
-**YouTube video:**: TBD
+**YouTube video:** [Link](https://youtu.be/ZtltjSjFPDg?si=YdIeYcFeP4yzTXKQ)
 
 <!-- =========================================== -->
 <!-- KnowledgeGraph-Q&A-and-RAG-with-TabularData -->
