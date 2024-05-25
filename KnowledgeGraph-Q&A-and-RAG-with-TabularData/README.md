@@ -72,6 +72,12 @@ python src/app.py
   <img src="images/UI.png" alt="ChatBot_UI">
 </div>
 
+## Neo4j function Links:
+- Neo4j Fuzzy search:
+    - apoc.text.fuzzyMatch: https://neo4j.com/labs/apoc/4.3/overview/apoc.text/apoc.text.fuzzyMatch/
+    - Soundex search: https://neo4j.com/developer/kb/how-to-perform-a-soundex-search/
+- Neo4j Vector indexes: https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/
+
 ## Databases:
 - Movie dataset: [Link](https://raw.githubusercontent.com/tomasonjo/blog-datasets/main/movies/movies_small.csv)
 - Medical reports dataset: [Link](https://github.com/neo4j-partners/neo4j-generative-ai-azure/tree/main/ingestion/data)
