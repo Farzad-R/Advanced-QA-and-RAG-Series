@@ -4,7 +4,6 @@ This repository contains advanced LLM-based chatbots for Retrieval Augmented Gen
 ## List of projects:
 - [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
 - [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
-- [ ] [KnowledgeGraph-Q&A-and-RAG-with-Text](#KnowledgeGraph-Q&A-and-RAG-with-Text) - **UNDER DEVELOPMENT**
 
 ## General structure of the projects:
 
@@ -70,9 +69,4 @@ NOTE: This is the general structure of the projects, however there might be smal
 - Movie dataset: [Link](https://raw.githubusercontent.com/tomasonjo/blog-datasets/main/movies/movies_small.csv)
 - Medical reports dataset: [Link](https://github.com/neo4j-partners/neo4j-generative-ai-azure/tree/main/ingestion/data)
 
-**YouTube video:**: TBD
-
-
-<!-- =============================== -->
-<!-- Document-KnowledgeGraph-RAG-GPT -->
-<!-- =============================== -->
+**YouTube video:**: [Link](https://youtu.be/3NP1llvtrbI?si=pcL3_StQvqjjnkm9)
