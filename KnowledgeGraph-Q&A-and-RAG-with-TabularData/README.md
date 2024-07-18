@@ -64,7 +64,7 @@ python src/app.py
 
 ## Chatbot project Schema
 <div align="center">
-  <img src="images/project_schema.png" alt="Schema">
+  <img src="images/projectschema.png" alt="Schema">
 </div>
 
 ## Chatbot User Interface
