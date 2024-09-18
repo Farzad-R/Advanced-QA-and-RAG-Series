@@ -10,7 +10,7 @@
 - Chat with uploaded CSV and XSLX files during the interaction with the user interface.
 - RAG with Tabular datasets.
 
-**YouTube video:** TBD
+**YouTube video: [Link](https://youtu.be/ZtltjSjFPDg?si=0EomljP6HIEfCEwZ)** 
 
 ## Main underlying techniques used in this chatbot:
 - LLM chains and agents
