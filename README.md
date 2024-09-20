@@ -42,10 +42,11 @@ NOTE: This is the general structure of the projects, however there might be smal
 This project demonstrates how to build an agentic system using Large Language Models (LLMs) that can interact with multiple databases and utilize various tools. It highlights the use of SQL agents to efficiently query large databases. The key frameworks used in this project include OpenAI, LangChain, LangGraph, LangSmith, and Gradio. The end product is an end-to-end chatbot, designed to perform these tasks, with LangSmith used to monitor the performance of the agents.
 
 **Features:**
-- Chat with SQL data.
-- Chat with preprocessed CSV and XLSX data.
-- Chat with uploaded CSV and XSLX files during the interaction with the user interface.
-- RAG with Tabular datasets.
+- Handles unstructured data with RAG and structured data with SQL agents.
+- Built-in web search when needed.
+- Automatically chooses the best tool for each task.
+- Scalable for large databases.
+- Easily connects to multiple databases.
 
 **Databases:**
 - To be added
@@ -62,11 +63,10 @@ This project demonstrates how to build an agentic system using Large Language Mo
 `Q&A-and-RAG-with-SQL-and-TabularData` is a chatbot project that utilizes <u>GPT 3.5</u>, <u>Langchain</u>, <u>SQLite</u>, and <u>ChromaDB</u> and allows users to interact (perform <u>Q&A</u> and <u>RAG</u>) with SQL databases, CSV, and XLSX files using natural language.
 
 **Features:**
-- Handles unstructured data with RAG and structured data with SQL agents.
-- Built-in web search when needed.
-- Automatically chooses the best tool for each task.
-- Scalable for large databases.
-- Easily connects to multiple databases.
+- Chat with SQL data.
+- Chat with preprocessed CSV and XLSX data.
+- Chat with uploaded CSV and XSLX files during the interaction with the user interface.
+- RAG with Tabular datasets.
 
 **Databases:**
 - Diabetes dataset: [Link](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset?resource=download&select=diabetes.csv)
