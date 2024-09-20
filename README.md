@@ -2,7 +2,7 @@
 This repository contains advanced LLM-based chatbots for Retrieval Augmented Generation (RAG) and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.). The repository provides guide on using both AzureOpenAI and OpenAI API for each project.
 
 ## List of projects:
-= [x] [AgentGraph-Intelligent-Q&A-and-RAG-System](#AgentGraph-Intelligent-Q&A-and-RAG-System)
+- [x] [AgentGraph-Intelligent-Q&A-and-RAG-System](#AgentGraph-Intelligent-Q&A-and-RAG-System)
 - [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
 - [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
 
