@@ -1,0 +1,5 @@
+.env file example:
+
+OPEN_AI_API_KEY=
+TAVILY_API_KEY=
+LANGCHAIN_API_KEY=

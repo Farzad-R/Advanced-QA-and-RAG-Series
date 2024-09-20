@@ -1,0 +1,46 @@
+primary_agent:
+  llm: gpt-4o-mini
+  llm_temperature: 0.0
+
+swiss_airline_policy_rag:
+  unstructured_docs: "data/unstructured_docs/swiss_airline_policy"
+  vectordb: "data/airline_policy_vectordb"
+  collection_name: rag-chroma
+  llm: gpt-4o-mini
+  llm_temperature: 0.0
+  embedding_model: text-embedding-3-small
+  chunk_size: 500
+  chunk_overlap: 100
+  k: 2
+
+stories_rag:
+  unstructured_docs: "data/unstructured_docs/stories"
+  vectordb: "data/stories_vectordb"
+  collection_name: stories-rag-chroma
+  llm: gpt-4o-mini
+  llm_temperature: 0.0
+  embedding_model: text-embedding-3-small
+  chunk_size: 500
+  chunk_overlap: 100
+  k: 2
+
+travel_sqlagent_configs:
+  travel_sqldb_dir: "data/travel.sqlite"
+  llm: "gpt-3.5-turbo"
+  llm_temperature: 0.0
+  
+chinook_sqlagent_configs:
+  chinook_sqldb_dir: "data/Chinook.db"
+  llm: "gpt-3.5-turbo"
+  llm_temperature: 0.0
+
+langsmith:
+  tracing: "true"
+  project_name: "rag_sqlagent_project"
+
+tavily_search_api:
+  tavily_search_max_results: 2
+
+graph_configs:
+  thread_id: 1 # This can be adjusted to assign a unique value for each user session, so it's easier to access data later on.
+  

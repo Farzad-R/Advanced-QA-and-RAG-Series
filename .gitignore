@@ -1,16 +1,6 @@
-LLM-Agents
-docs_vector_embedding
-RAG-with-unstructured-data-and-SQLAgent
-Important_notes.md
 KnowledgeGraph-Q&A-and-RAG-with-Text
-desktop.ini
 =======
 LangGraph
-storage
-memory
-models
-AI-RoundTable
-indexes
 # Byte-compiled / optimized / DLL files
 __pycache__/
 vectorstores/
