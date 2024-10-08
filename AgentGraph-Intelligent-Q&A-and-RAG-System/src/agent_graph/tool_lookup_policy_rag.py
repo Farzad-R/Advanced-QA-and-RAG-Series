@@ -57,7 +57,7 @@ class SwissAirlinePolicyRAGTool:
 
 
 @tool
-def lookup_policy(query: str) -> str:
+def lookup_swiss_airline_policy(query: str) -> str:
     """Consult the company policies to check whether certain options are permitted."""
     rag_tool = SwissAirlinePolicyRAGTool(
         embedding_model=TOOLS_CFG.policy_rag_embedding_model,

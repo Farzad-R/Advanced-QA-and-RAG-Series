@@ -6,28 +6,6 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
-load_dotenv()
-
-
-os.environ['OPENAI_API_KEY'] = os.getenv("OPEN_AI_API_KEY")
-
-with open(here("configs/tools_config.yml")) as cfg:
-    app_config = yaml.load(cfg, Loader=yaml.FullLoader)
-
-# # Uncomment the following configs to run for swiss airline policy document
-# CHUNK_SIZE = app_config["swiss_airline_policy_rag"]["chunk_size"]
-# CHUNK_OVERLAP = app_config["swiss_airline_policy_rag"]["chunk_overlap"]
-# EMBEDDING_MODEL = app_config["swiss_airline_policy_rag"]["embedding_model"]
-# VECTORDB_DIR = app_config["swiss_airline_policy_rag"]["vectordb"]
-# DOC_DIR = app_config["swiss_airline_policy_rag"]["unstructured_docs"]
-
-# Uncomment the following configs to run for stories document
-CHUNK_SIZE = app_config["stories_rag"]["chunk_size"]
-CHUNK_OVERLAP = app_config["stories_rag"]["chunk_overlap"]
-EMBEDDING_MODEL = app_config["stories_rag"]["embedding_model"]
-VECTORDB_DIR = app_config["stories_rag"]["vectordb"]
-COLLECTION_NAME = app_config["stories_rag"]["collection_name"]
-DOC_DIR = app_config["stories_rag"]["unstructured_docs"]
 
 
 class PrepareVectorDB:
@@ -105,7 +83,7 @@ class PrepareVectorDB:
         if not os.path.exists(here(self.vectordb_dir)):
             # If it doesn't exist, create the directory and create the embeddings
             os.makedirs(here(self.vectordb_dir))
-            print(f"Directory '{self.vectordb_dir}' created.")
+            print(f"Directory '{self.vectordb_dir}' was created.")
 
             file_list = os.listdir(here(self.doc_dir))
             docs = [PyPDFLoader(self.path_maker(
@@ -130,21 +108,34 @@ class PrepareVectorDB:
             print(f"Directory '{self.vectordb_dir}' already exists.")
 
 
-prepare_db_instance = PrepareVectorDB(
-    doc_dir=DOC_DIR,
-    chunk_size=CHUNK_SIZE,
-    chunk_overlap=CHUNK_OVERLAP,
-    embedding_model=EMBEDDING_MODEL,
-    vectordb_dir=VECTORDB_DIR,
-    collection_name=COLLECTION_NAME)
+if __name__ == "__main__":
+    load_dotenv()
+    os.environ['OPENAI_API_KEY'] = os.getenv("OPEN_AI_API_KEY")
 
-prepare_db_instance.run()
+    with open(here("configs/tools_config.yml")) as cfg:
+        app_config = yaml.load(cfg, Loader=yaml.FullLoader)
 
-# To test the vector DB you can uncomment the following part and run it in
-vectordb = Chroma(
-    collection_name=COLLECTION_NAME,
-    persist_directory=str(here(VECTORDB_DIR)),
-    embedding_function=OpenAIEmbeddings(model=EMBEDDING_MODEL)
-)
-print("Number of vectors in vectordb:",
-      vectordb._collection.count(), "\n\n")
+    # # Uncomment the following configs to run for swiss airline policy document
+    # chunk_size = app_config["swiss_airline_policy_rag"]["chunk_size"]
+    # chunk_overlap = app_config["swiss_airline_policy_rag"]["chunk_overlap"]
+    # embedding_model = app_config["swiss_airline_policy_rag"]["embedding_model"]
+    # vectordb_dir = app_config["swiss_airline_policy_rag"]["vectordb"]
+    # doc_dir = app_config["swiss_airline_policy_rag"]["unstructured_docs"]
+
+    # Uncomment the following configs to run for stories document
+    chunk_size = app_config["stories_rag"]["chunk_size"]
+    chunk_overlap = app_config["stories_rag"]["chunk_overlap"]
+    embedding_model = app_config["stories_rag"]["embedding_model"]
+    vectordb_dir = app_config["stories_rag"]["vectordb"]
+    collection_name = app_config["stories_rag"]["collection_name"]
+    doc_dir = app_config["stories_rag"]["unstructured_docs"]
+
+    prepare_db_instance = PrepareVectorDB(
+        doc_dir=doc_dir,
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        embedding_model=embedding_model,
+        vectordb_dir=vectordb_dir,
+        collection_name=collection_name)
+
+    prepare_db_instance.run()

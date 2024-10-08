@@ -2,14 +2,13 @@ Intro:
 
 In the stories, who is lily?
 
-Based on the airline policy, Do I need to reconfirm my flight?
+Based on the airline policy, do I need to reconfirm my flight?
 
 Give me the table names in travel database
 
 Give me the table names in chinook database
 
-I am looking for langgraph tutorial. give me the link to their website
-
+Give me the link of Trump and Harris debate on youtube
 ========================================================================
 Final test:
 
@@ -19,11 +18,11 @@ Based on the airline policy, can I cancel my ticket 10 hours before the flight?
 
 Is there any flight available on the travel database that goes from CDG to BSL?
 
-Give me the link of Trump and Harris debate on youtube
-
 In chinook DB, list the total sales per country. Which country's customers spent the most?
 
 What are all the genres of Alanis Morisette songs?
 
 Give me a couple of his albums' names
+
+Give me the link to some websites for langgraph tutorial
 ========================================================================

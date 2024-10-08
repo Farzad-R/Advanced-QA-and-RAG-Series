@@ -5,7 +5,7 @@ from utils.ui_settings import UISettings
 
 with gr.Blocks() as demo:
     with gr.Tabs():
-        with gr.TabItem("RAG-GPT"):
+        with gr.TabItem("AgentGraph"):
             ##############
             # First ROW:
             ##############

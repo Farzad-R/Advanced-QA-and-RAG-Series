@@ -3,7 +3,7 @@ from langgraph.graph import StateGraph, START
 from langchain_openai import ChatOpenAI
 from agent_graph.tool_chinook_sqlagent import query_chinook_sqldb
 from agent_graph.tool_travel_sqlagent import query_travel_sqldb
-from agent_graph.tool_lookup_policy_rag import lookup_policy
+from agent_graph.tool_lookup_policy_rag import lookup_swiss_airline_policy
 from agent_graph.tool_tavily_search import load_tavily_search_tool
 from agent_graph.tool_stories_rag import lookup_stories
 from agent_graph.load_tools_config import LoadToolsConfig
@@ -52,10 +52,10 @@ def build_graph():
     # Load tools with their proper configs
     search_tool = load_tavily_search_tool(TOOLS_CFG.tavily_search_max_results)
     tools = [search_tool,
-             lookup_policy,
+             lookup_swiss_airline_policy,
              lookup_stories,
              query_travel_sqldb,
-             query_chinook_sqldb
+             query_chinook_sqldb,
              ]
     # Tell the LLM which tools it can call
     primary_llm_with_tools = primary_llm.bind_tools(tools)
@@ -68,10 +68,10 @@ def build_graph():
     tool_node = BasicToolNode(
         tools=[
             search_tool,
-            lookup_policy,
+            lookup_swiss_airline_policy,
             lookup_stories,
             query_travel_sqldb,
-            query_chinook_sqldb
+            query_chinook_sqldb,
         ])
     graph_builder.add_node("tools", tool_node)
     # The `tools_condition` function returns "tools" if the chatbot asks to use a tool, and "__end__" if
