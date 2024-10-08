@@ -3,6 +3,7 @@ travel.sqlite
 airline_policy_vectordb
 stories_vectordb
 swiss_faq.md
+Chinook_Sqlite.sql
 =======
 # Byte-compiled / optimized / DLL files
 __pycache__/
