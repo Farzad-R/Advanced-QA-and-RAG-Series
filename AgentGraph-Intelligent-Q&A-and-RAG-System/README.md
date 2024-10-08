@@ -17,10 +17,10 @@ A detailed explanation of the project is available in the following YouTube vide
 - **OpenAI API Key:** Required for GPT functionality.
 - **Tavily Credentials:** Required for search tools (Free from your Tavily profile).
 - **LangChain Credentials:** Required for LangSmith (Free from your LangChain profile).
-
+- **Dependencies:** The necessary libraries are provided in `requirements.txt` file.
 ---
 
-## Installation
+## Installation and Execution
 
 To set up the project, follow these steps:
 
@@ -45,22 +45,25 @@ To set up the project, follow these steps:
    ```bash
    pip install -r requirements.txt
    ```
+5. Download the travel sql database from this link and paste it into the `data` folder.
 
----
+6. Download the chinook SQL database from this link and paste it into the `data` folder.
 
-## Execution
+7. Prepare the `.env` file and add your `OPEN_AI_API_KEY`, `TAVILY_API_KEY`, and `LANGCHAIN_API_KEY`.
 
-### Running the Chatbot
-All necessary data is included in the GitHub repository. To run the chatbot:
-
-```bash
-python src\app.py
-```
-
-1. Open the Gradio URL generated in the terminal.
-2. Start chatting!
+8. Run `prepare_vector_db.py` module once to prepare both vector databases.
+   ```bash
+   python src\prepare_vector_db.py
+   ```
+9. Run the app:
+   ```bash
+   python src\app.py
+   ```
+Open the Gradio URL generated in the terminal and start chatting.
 
 *Sample questions are available in `sample_questions.txt`.*
+
+---
 
 ### Using Your Own Database
 
@@ -81,18 +84,30 @@ Once your databases are ready, you can either connect the current agents to the 
 
 ---
 
-## Features to Be Improved
-- Memory enhancements
-- User and database authentication
-- Error handling
-- Database management and data pipeline improvements
+## Project Schemas
 
----
-
-## Project Structure
+### High-level overview
 
 <div align="center">
-  <img src="images/project_schema.png" alt="Schema">
+  <img src="images/high-level.png" alt="high-level">
+</div>
+
+### Detailed Schema
+
+<div align="center">
+  <img src="images/detailed_schema.png" alt="detailed_schema">
+</div>
+
+### Graph Schema
+
+<div align="center">
+  <img src="images/graph_image.png" alt="graph_image">
+</div>
+
+### SQL-agent for large databases strategies
+
+<div align="center">
+  <img src="images/large_db_strategy.png" alt="large_db_strategy">
 </div>
 
 ---
@@ -105,26 +120,28 @@ Once your databases are ready, you can either connect the current agents to the 
 
 ---
 
+## LangSmith Monitoring System
+
+<div align="center">
+  <img src="images/langsmith.png" alt="langsmith">
+</div>
+
+---
+
 ## Databases Used
 
-- **Diabetes Dataset:** [Kaggle Link](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset?resource=download&select=diabetes.csv)
-- **Cancer Dataset:** [Kaggle Link](https://www.kaggle.com/datasets/rohansahana/breast-cancer-dataset-for-beginners?select=train.csv)
-- **Chinook Database:** [Sample Database](https://database.guide/2-sample-databases-sqlite/)
-
+- **Travel SQL Database:** [Kaggle Link](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset?resource=download&select=diabetes.csv)
+- **Chinook SQL Database:** [Sample Database](https://database.guide/2-sample-databases-sqlite/)
+- **stories VectorDB**
+- **Airline Policy FAQ VectorDB**
 ---
 
 ## Key Frameworks and Libraries
 
 - **LangChain:** [Introduction](https://python.langchain.com/docs/get_started/introduction)
+- **LangGraph**
+- **LangSmith**
 - **Gradio:** [Documentation](https://www.gradio.app/docs/interface)
 - **OpenAI:** [Developer Quickstart](https://platform.openai.com/docs/quickstart?context=python)
-- **SQLAlchemy:** [Documentation](https://www.sqlalchemy.org/)
-
+- **Tavily Search**
 ---
-
-### Note:
-This project is currently not production-ready. Key areas for improvement include enhancing memory, adding authentication layers, and implementing better error handling.
-
----
-
-This README keeps it simple, professional, and easy to follow, offering clear instructions while maintaining the technical depth of the project. Let me know if you'd like any further adjustments!

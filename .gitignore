@@ -1,7 +1,9 @@
 KnowledgeGraph-Q&A-and-RAG-with-Text
-data
+travel.sqlite
+airline_policy_vectordb
+stories_vectordb
+swiss_faq.md
 =======
-LangGraph
 # Byte-compiled / optimized / DLL files
 __pycache__/
 vectorstores/
