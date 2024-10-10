@@ -131,7 +131,7 @@ Once your databases are ready, you can either connect the current agents to the 
 
 ## Databases Used
 
-- **Travel SQL Database:** [Kaggle Link](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset?resource=download&select=diabetes.csv)
+- **Travel SQL Database:** [Kaggle Link](https://www.kaggle.com/code/mpwolke/airlines-sqlite)
 - **Chinook SQL Database:** [Sample Database](https://database.guide/2-sample-databases-sqlite/)
 - **stories VectorDB**
 - **Airline Policy FAQ VectorDB**
