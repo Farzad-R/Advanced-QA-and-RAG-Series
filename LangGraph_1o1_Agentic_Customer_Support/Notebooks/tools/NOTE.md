@@ -1,0 +1,1 @@
+Tools in this folder expect `langchain-core<0.2.16` to use `ensure_config` to collect the config from context.

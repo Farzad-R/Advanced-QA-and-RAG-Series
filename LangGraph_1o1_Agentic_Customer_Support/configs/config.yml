@@ -1,0 +1,30 @@
+directories:
+  local_file: "data/travel2.sqlite"
+  backup_file: "data/travel2.backup.sqlite"
+  
+urls:
+  travel_db_url: https://storage.googleapis.com/benchmarks-artifacts/travel-db/travel2.sqlite
+  airline_policy_url: https://storage.googleapis.com/benchmarks-artifacts/travel-db/swiss_faq.md
+
+openai_models:
+  # model: gpt-4-turbo
+  # model: gpt-3.5-turbo
+  model: gpt-4o-mini
+  # model: gpt-4o
+  embedding_model: text-embedding-3-small
+
+RAG:
+  doc_dir: "data/swiss_faq.md"
+  vectordb: "data/airline_policy_vectordb"
+  collection_name: airline-policy
+  embedding_model: text-embedding-3-small
+  chunk_size: 500
+  chunk_overlap: 100
+  k: 2
+
+tavily_search:
+  max_results: 2
+
+langsmith:
+  tracing: "true"
+  project_name: "Airline-Customer-Service"

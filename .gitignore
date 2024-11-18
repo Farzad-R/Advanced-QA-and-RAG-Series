@@ -4,6 +4,8 @@ airline_policy_vectordb
 stories_vectordb
 swiss_faq.md
 Chinook_Sqlite.sql
+travel2.backup.sqlite
+travel2.sqlite
 =======
 # Byte-compiled / optimized / DLL files
 __pycache__/

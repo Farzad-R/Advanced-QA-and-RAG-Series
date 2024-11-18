@@ -1,7 +1,8 @@
 # Advanced-RAG-Series
-This repository contains advanced LLM-based chatbots for Retrieval Augmented Generation (RAG) and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.). The repository provides guide on using both AzureOpenAI and OpenAI API for each project.
+This repository contains advanced LLM-based chatbots for Retrieval Augmented Generation (RAG) and Q&A with different databases. (VectorDB, GraphDB, SQLite, CSV, XLSX, etc.). The repository provides guide on using both AzureOpenAI and OpenAI API for each project. Each project is accompanied with a YouTube video that explains all the details. The link to the videos are provided in each section.
 
 ## List of projects:
+- [x] [LangGraph_1o1_Agentic_Customer_Support](#LangGraph_1o1_Agentic_Customer_Support)
 - [x] [AgentGraph-Intelligent-Q&A-and-RAG-System](#AgentGraph-Intelligent-Q&A-and-RAG-System)
 - [x] [Q&A-and-RAG-with-SQL-and-TabularData](#Q&A-and-RAG-with-SQL-and-TabularData)
 - [x] [KnowledgeGraph-Q&A-and-RAG-with-TabularData](#KnowledgeGraph-Q&A-and-RAG-with-TabularData)
@@ -24,15 +25,32 @@ Project-folder
 NOTE: This is the general structure of the projects, however there might be small changes duo to the specific needs of each project.
 
 ## Key Notes:
-**Key Note 1:** All the project uses Azure OpenAI or OpenAI models. So, to use OpenAI API directly, just change the credentials and switch the models completions.
+**Key Note 1:** All the project uses OpenAI models.
 
 **Key Note 2 :** When we interact with databases using LLM agents, good informative column names can help the agents to navigate easier through the database.
 
-**Key Note 3:** When we interact with databases using LLM agents, remember to NOT use the database with WRITE privileges. Use only READ and limit the scope. Otherwise your user can manupulate the data (e.g ask your chain to delete data).
+**Key Note 3:** When we interact with sensitive databases using LLM agents, remember to NOT use the database with WRITE privileges. Use only READ and limit the scope. Otherwise your user can manupulate the data (e.g ask your chain to delete data).
 
 **Key Note 4:** Familiarity with database query languages such as Pandas for Python, SQL, and Cypher can enhance the user's ability to ask more better questions and have a richer interaction with the graph agent.
 
 ## Project description:
+<!-- ====================================== -->
+<!-- LangGraph_1o1_Agentic_Customer_Support -->
+<!-- ====================================== -->
+<a id="AgentGraph-Intelligent-Q&A-and-RAG-System"></a>
+<h3><a style=" white-space:nowrap; " href="https://github.com/Farzad-R/Advanced-QA-and-RAG-Series/tree/main/LangGraph_1o1_Agentic_Customer_Support"><b>LangGraph_1o1_Agentic_Customer_Support:</b></a></h3>
+
+LangGraph_1o1_Agentic_Customer_Support is a project designed to demonstrate how complex systems can be built using LangGraph. In this project, we create an agentic customer service chatbot for Swiss Airlines in four different versions, addressing common real-world challenges at each step. The system supports a wide range of tasks through 18 tools, including Retrieval-Augmented Generation (RAG), web search, and travel planning.
+
+
+**Features:**
+- System Design: Demonstrates stable, effective strategies for building complex systems with LangGraph.
+- Database Interaction: Provides methods for managing sensitive tasks such as writing, cleaning, and updating data in SQL databases.
+- Workflow Integration: Combines multiple workflows into one seamless system, including web search, SQL database operations, and RAG on vector databases.
+- Design strategies: Explores various strategies to address challenges and optimize system performance.
+
+**YouTube video:**: [Link](TBD)
+
 <!-- ========================================= -->
 <!-- AgentGraph-Intelligent-Q&A-and-RAG-System -->
 <!-- ========================================= -->
@@ -48,10 +66,8 @@ This project demonstrates how to build an agentic system using Large Language Mo
 - Scalable for large databases.
 - Easily connects to multiple databases.
 
-**Databases:**
-- To be added
+**YouTube video:**: [Link](https://youtu.be/xsCedrNP9w8?si=LdX45fMZuGhMCEoq)
 
-**YouTube video:**: - To be added
 
 
 <!-- ==================================== -->
