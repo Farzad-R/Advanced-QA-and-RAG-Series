@@ -3,17 +3,6 @@
 ## Overview
 LangGraph_1o1_Agentic_Customer_Support is a project designed to demonstrate how complex systems can be built using LangGraph. In this project, we create an agentic customer service chatbot for Swiss Airlines in four different versions, addressing common real-world challenges at each step. The system supports a wide range of tasks through 18 tools, including Retrieval-Augmented Generation (RAG), web search, and travel planning.
 
-### **Important Note**  
-
-The customer service chatbot has permissions to **write**, **update**, and **clean** the content of the SQL database. To ensure data integrity during testing, a **backup database** is provided.  
-
-- After each test, you can **refresh the database** to its original state by updating the dates and restoring default values.  
-- Refer to **Step 9** in the setup instructions for the refresh process.  
-
-## YouTube video:
-
-YouTube video: [Link](TBD)
-
 ## Features
 - **Customer History:** Automatically fetch historical data
 - **Web Search:** Provide additional information via web searches
@@ -26,7 +15,8 @@ YouTube video: [Link](TBD)
 ## Setup Instructions for Linux users
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/Farzad-R/TBD
+   git clone https://github.com/dreamboat26/Advanced-QA-and-RAG-Series.git
+   cd  LangGraph_1o1_Agentic_Customer_Support
    ```
 
 2. **Create a Virtual Environment:**
