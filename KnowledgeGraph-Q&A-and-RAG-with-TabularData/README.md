@@ -83,7 +83,7 @@ python src/app.py
 - Medical reports dataset: [Link](https://github.com/neo4j-partners/neo4j-generative-ai-azure/tree/main/ingestion/data)
 
 ## Key frameworks/libraries used in this chatbot:
-- Langchain agents: [Website](https://python.langchain.com/docs/use_cases/graph/quickstart/)
+- Langchain agents: [Website](https://python.langchain.com/v0.1/docs/use_cases/graph/quickstart/)
 - Gradio: [Documentation](https://www.gradio.app/docs/interface)
 - OpenAI: [Developer quickstart](https://platform.openai.com/docs/quickstart?context=python)
 - Neo4j: [Welcome to Neo4j](https://neo4j.com/docs/getting-started/)
