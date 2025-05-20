@@ -13,6 +13,7 @@ vectorstores/
 *.py[cod]
 *$py.class
 flagged
+schema
 # C extensions
 *.so
 # Distribution / packaging
