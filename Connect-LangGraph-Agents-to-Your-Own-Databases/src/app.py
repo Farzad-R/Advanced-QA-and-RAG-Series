@@ -1,11 +1,18 @@
 # https://www.gradio.app/guides/sharing-your-app#authentication
+
+import uuid
 import gradio as gr
 from utils.ui_settings import UISettings
 from utils.main_chatbot import MainChatbot
-import uuid
+from utils.user_db import get_user_credentials
 
 
-with gr.Blocks() as demo:
+def authenticate(username: str, password: str) -> bool:
+    user_db = get_user_credentials()
+    return user_db.get(username) == password
+
+
+with gr.Blocks(css=".tall-button { height: 85px; font-size: 16px; }") as demo:
 
     session_id = gr.State(str(uuid.uuid4()))
     session_display = gr.Markdown()  # Placeholder for session ID text
@@ -41,10 +48,12 @@ with gr.Blocks() as demo:
             # Third ROW:
             ##############
             with gr.Row() as row_two:
-                text_submit_btn = gr.Button(value="Submit text")
+                text_submit_btn = gr.Button(
+                    value="Submit text", elem_classes="tall-button")
                 app_functionality = gr.Dropdown(
                     label="App functionality", choices=["RAG", "Chat"], value="RAG")
-                clear_button = gr.ClearButton([input_txt, chatbot])
+                clear_button = gr.ClearButton(
+                    [input_txt, chatbot], elem_classes="tall-button")
             ##############
             # Process:
             ##############
@@ -67,4 +76,5 @@ with gr.Blocks() as demo:
 
 if __name__ == "__main__":
     # demo.launch()
-    demo.launch(auth=[("farzad_rzt", "123"), ("peter_parker", "letmein")])
+    # demo.launch(auth=[("farzad_rzt", "123"), ("peter_parker", "letmein")])
+    demo.launch(auth=authenticate)

@@ -4,8 +4,18 @@ import os
 from pyprojroot import here
 
 
-def setup_logger(name: str = "chatbot"):
-    logs_dir = "logs"
+def setup_logger(name: str = "chatbot") -> logging.Logger:
+    """
+    Sets up a logger with separate log files for DEBUG, INFO, and ERROR levels.
+    Each log file rotates daily at midnight and retains logs for 7 days.
+
+    Args:
+        name (str): Name of the logger. Also used as the base filename for logs.
+
+    Returns:
+        logging.Logger: Configured logger instance.
+    """
+    logs_dir = here("logs")
     os.makedirs(logs_dir, exist_ok=True)
 
     logger = logging.getLogger(name)
