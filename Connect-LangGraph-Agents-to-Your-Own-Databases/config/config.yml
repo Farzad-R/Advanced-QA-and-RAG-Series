@@ -1,3 +1,5 @@
+setting: container # container or local
+
 directories:
   data_directory: "data/pdf"
   upload_file_dir: "data/upload_file_dir"
@@ -11,17 +13,8 @@ model_config:
   chat_llm: "gpt-4o-mini"
   chat_llm_system_message: You talk like a pirate. Answer all questions to the best of your ability.
 
-summarizer:
-  max_recursion: 10
-
-agent_config:
-  max_function_calls: 3
-
 rag_config:
   collection_name: "test_vectors"
   k: 3
   chunk_size: 1250
   chunk_overlap: 250
-
-databases:
-  db_uri: "postgresql://postgres:postgres@localhost:5442/postgres?sslmode=disable"

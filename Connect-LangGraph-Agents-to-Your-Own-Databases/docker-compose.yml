@@ -1,17 +1,39 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:latest
-    container_name: langgraph-postgres
+    image: postgres:17
+    container_name: langgraph-postgres-2
+    ports:
+      - "5442:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
-    ports:
-      - "5442:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  chroma:
+    image: chromadb/chroma
+    container_name: chroma
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/vectordb:/data
+
+
+  chatbot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chatbot
+    ports:
+      - "7860:7860"
+    volumes:
+      - .:/app                   # Full access to the codebase for dev
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - chroma
 
 volumes:
   pgdata:

@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
+import chromadb
 
 load_dotenv()
 
@@ -30,7 +31,6 @@ class LoadConfig:
         self.embeddings = OpenAIEmbeddings(
             model=config["model_config"]["embedding_model"])
 
-        self.max_recursion = config["summarizer"]["max_recursion"]
         # rag_config
         self.collection_name = config["rag_config"]["collection_name"]
 
@@ -43,8 +43,17 @@ class LoadConfig:
         os.environ["LANGSMITH_TRACING"] = "true"
         os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
 
-        self.stored_vectordb = Chroma(
-            persist_directory=self.stored_vectordb_dir,
-            embedding_function=self.embeddings
-        )
-        self.db_uri = config["databases"]["db_uri"]
+        self.setting = config["setting"]
+        if self.setting == "local":
+            self.stored_vectordb = Chroma(
+                persist_directory=self.stored_vectordb_dir,
+                embedding_function=self.embeddings
+            )
+        elif self.setting == "container":
+            self.stored_vectordb = Chroma(
+                collection_name=self.collection_name,
+                embedding_function=self.embeddings,
+                client=chromadb.HttpClient(host="chroma", port=8000)
+            )
+
+        self.db_uri = os.getenv("DATABASE_URI")

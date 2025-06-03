@@ -18,7 +18,7 @@ with gr.Blocks(css=".tall-button { height: 85px; font-size: 16px; }") as demo:
     session_display = gr.Markdown()  # Placeholder for session ID text
 
     with gr.Tabs():
-        with gr.TabItem("End-to-End RAG Chatbot"):
+        with gr.TabItem("End-to-End Agentic Chatbot"):
             demo.load(
                 lambda s: f"🔒 Session ID: `{s}`", inputs=session_id, outputs=session_display)
             ##############
@@ -75,6 +75,10 @@ with gr.Blocks(css=".tall-button { height: 85px; font-size: 16px; }") as demo:
 
 
 if __name__ == "__main__":
+    print("Starting Gradio app...")
     # demo.launch()
     # demo.launch(auth=[("farzad_rzt", "123"), ("peter_parker", "letmein")])
-    demo.launch(auth=authenticate)
+    # demo.launch(auth=authenticate)
+    # demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    demo.launch(auth=authenticate, server_name="0.0.0.0",
+                server_port=7860, share=False)
