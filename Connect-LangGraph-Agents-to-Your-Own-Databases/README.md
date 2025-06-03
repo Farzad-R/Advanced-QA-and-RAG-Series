@@ -10,31 +10,67 @@ It is designed for **learners, developers, and professionals** who want to go be
 
 ### ✅ 1. Agentic Chatbot with LangGraph
 
-* Powered by OpenAI Chat Models (e.g., GPT-4)
+* Built using **LangGraph**, a state-machine-based framework for AI agents
 * Supports both **Retrieval-Augmented Generation (RAG)** and **pure chat**
-* Built with **LangGraph** to manage memory and conversation flow
+* Integrates with **OpenAI GPT models** (e.g., `gpt-4o`, `gpt-4-turbo`, etc.)
+* Manages memory and conversation flow through LangGraph's node-based system
+
+---
 
 ### ✅ 2. Real Databases for Production-Style Design
 
-* **ChromaDB** as the vector database for document retrieval (RAG)
-* **PostgreSQL** as the memory backend (LangGraph's checkpointing system)
-* Optional: **LangSmith** for centralized tracing and memory during development
+* **ChromaDB**: Used as the **vector database** to store document embeddings
+* **PostgreSQL**: Used as the **memory backend** for LangGraph checkpointing
+* Optional: **LangSmith** support for tracing, debugging, and analytics
 
-### ✅ 3. Containerization Strategy (Progressive)
+---
 
-* Step 1: Simple Docker container for PostgreSQL only
-* Step 2: Full project containerized into 3 services:
+### ✅ 3. 3-Container Microservice Architecture (via Docker Compose)
 
-  * Chatbot (LangGraph + Gradio UI)
-  * PostgreSQL
-  * ChromaDB
+Each component runs in an isolated service:
 
-### ✅ 4. Development Best Practices
+* **Chatbot Container**: LangGraph backend + Gradio frontend
+* **ChromaDB Container**: Persistent vector store accessed via `HttpClient`
+* **PostgreSQL Container**: Persistent memory store for LangGraph
 
-* `.env` file for secrets
-* Logging system (INFO, DEBUG, ERROR levels)
-* Authentication with session-specific memory
-* Ready-to-deploy Docker architecture
+This approach mirrors real-world deployment environments and improves modularity, scalability, and portability.
+
+---
+
+### ✅ 4. Automatic VectorDB Creation in Chroma Container
+
+* The vector database is **not created locally**, but **inside the Chroma container**.
+* Achieved by using:
+
+  ```python
+  chromadb.HttpClient(host="chroma", port=8000)
+  ```
+* This ensures the vector data is accessible only via the running container just like it would be in production.
+
+---
+
+### ✅ 5. Visualize Docker Container Communication (with Weave Scope)
+
+We include steps to **visually inspect the live communication** between containers using [Weave Scope](https://www.weave.works/oss/scope/).
+
+You get:
+
+* Real-time topology graph
+* Communication metrics (who's talking to whom)
+* CPU/Memory usage per container
+* Logs and deep-inspection per service
+
+> 📍 Accessible via `http://localhost:4040` after following our documented steps.
+
+---
+
+### ✅ 6. Development Best Practices
+
+* Secrets managed via `.env` file
+* Organized project structure (`src/`, `configs/`, `utils/`, `data/`, etc.)
+* Custom logging system for debug and error tracing
+* Blueprint-based Flask structure for future expansion
+* Clean `docker-compose.yml` and multi-stage Dockerfile setup
 
 ---
 
@@ -120,19 +156,7 @@ DATABASE_URI=postgresql://postgres:postgres@postgres:5432/postgres
 
 ---
 
-### 🔧 Step 1: Prepare Vector DB (Once)
-
-You'll now build the vector database directly inside the chatbot container, using the running Chroma server.
-
-```bash
-docker exec -it chatbot python src/prepare_vectordb_container.py
-```
-
-This connects to the Chroma container via internal Docker networking (`host="chroma", port=8000`) and saves the vector data into the shared volume.
-
----
-
-### 🚀 Step 2: Launch All Services
+### 🚀 Step 1: Launch All Services
 
 ```bash
 docker-compose up --build
@@ -143,6 +167,20 @@ This will:
 * Start a **PostgreSQL container** for graph memory
 * Start a **ChromaDB container** for vector retrieval
 * Start the **Chatbot container**, exposing the Gradio interface at [http://localhost:7860](http://localhost:7860)
+
+---
+
+### 🔧 Step 1: Prepare Vector DB (Once)
+
+You'll now build the vector database directly inside the chatbot container, using the running Chroma server.
+
+```bash
+docker exec -it chatbot python src/prepare_vectordb_container.py
+```
+
+This connects to the Chroma container via internal Docker networking (`host="chroma", port=8000`) and saves the vector data into the shared volume.
+
+✅ Do this only once — unless you want to rebuild/update the DB.
 
 ---
 
