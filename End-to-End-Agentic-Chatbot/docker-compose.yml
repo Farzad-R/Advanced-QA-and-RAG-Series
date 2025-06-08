@@ -3,21 +3,24 @@ services:
     image: postgres:17
     container_name: langgraph-postgres-2
     ports:
-      - "5442:5432"
+       - "5443:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data # for dev
 
   chroma:
     image: chromadb/chroma
     container_name: chroma
     ports:
       - "8000:8000"
+    # volumes:
+    #   - ./data/vectordb:/data # for dev
     volumes:
-      - ./data/vectordb:/data
+      - chroma-data:/data
+
 
 
   chatbot:
@@ -37,3 +40,4 @@ services:
 
 volumes:
   pgdata:
+  chroma-data: # only if you are using chroma-data:/data as the Docker-managed volume

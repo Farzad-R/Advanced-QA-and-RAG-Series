@@ -5,6 +5,7 @@ from langgraph.prebuilt import ToolNode
 from langgraph.graph import END
 from langgraph.prebuilt import ToolNode, tools_condition
 from utils.load_config import LoadConfig
+from langgraph.checkpoint.postgres import PostgresSaver
 
 CFG = LoadConfig()
 
@@ -99,7 +100,7 @@ def run_rag(user_message: str, chat_session_config: str) -> str:
     Returns:
         str: The chatbot's response or an error message.
     """
-    try:
+    with PostgresSaver.from_conn_string(CFG.db_uri) as checkpointer:
         tools = ToolNode([retrieve])
         graph = compile_the_graph(tools)
         final_state = graph.invoke(
@@ -109,5 +110,3 @@ def run_rag(user_message: str, chat_session_config: str) -> str:
         print("final state:", final_state)
 
         return final_state["messages"][-1].content
-    except Exception as e:
-        return f"Error: {str(e)}"

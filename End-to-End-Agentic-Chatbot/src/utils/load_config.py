@@ -49,11 +49,11 @@ class LoadConfig:
                 persist_directory=self.stored_vectordb_dir,
                 embedding_function=self.embeddings
             )
+            self.db_uri = os.getenv("DATABASE_URI_LOCAL")
         elif self.setting == "container":
             self.stored_vectordb = Chroma(
                 collection_name=self.collection_name,
                 embedding_function=self.embeddings,
                 client=chromadb.HttpClient(host="chroma", port=8000)
             )
-
-        self.db_uri = os.getenv("DATABASE_URI")
+            self.db_uri = os.getenv("DATABASE_URI_CONTAINER")

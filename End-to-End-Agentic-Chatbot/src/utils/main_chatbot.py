@@ -43,11 +43,23 @@ class MainChatbot:
             logger.info(f"User: {request.username}, Session: {thread_id}")
 
             if app_functionality == "RAG":
-                if not os.path.exists(CFG.stored_vectordb_dir):
+                if CFG.setting == "local" and not os.path.exists(CFG.stored_vectordb_dir):
                     chatbot.append(
-                        (message, f"Please first create the vectorDB using `prepare_vectordb.py`."))
-                    logger.info("RAG with Stored VectorDB", chatbot)
+                        (message, f"Please first create the vectorDB using the related prepare_vectordb module."))
+                    logger.error("Local chroma connection failed", chatbot)
                     return "", chatbot, None
+
+                if CFG.setting == "container":
+                    try:
+                        _ = CFG.stored_vectordb.get()
+                    except Exception as e:
+                        chatbot.append(
+                            (message, "Chroma container may not be ready or vector DB not found.")
+                        )
+                        logger.error(
+                            "Container chroma connection failed", exc_info=True)
+                        return "", chatbot, None
+
                 response = run_rag(
                     message, chat_session_config)
 
