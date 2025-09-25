@@ -1,0 +1,149 @@
+1-standard_rag <==> (tech_docs)
+
+What is Python?
+What was my last question? - says random answer(which is expected as it doesn't have memory)
+
+=======================================================================================================================================
+2-conversational_rag <==> (tech_docs)
+
+What is Python?
+What are its main use cases?
+
+=======================================================================================================================================
+3-adaptive_rag <==> (tech_docs)
+
+1. Standard Route - Queries: What is Python?, How long does shipping take?, What is Docker?
+
+When: Clear, direct questions with obvious intent
+What it does: Single similarity search retrieval
+Examples: "What is Python?", "How long does shipping take?"
+Process: Query → Retrieve 5 docs → Generate response
+Speed: Fastest (minimal processing)
+
+2. Multi-Retrieval Route - Queries: Compare Docker containers vs Kubernetes orchestration
+When: Complex questions needing multiple information sources
+What it does: Multiple retrieval passes with different query formulations
+Examples: "Compare X and Y", "Pros and cons of...", "Difference between..."
+Process: Query → Initial retrieval (3 docs) → Alternative search (2 docs) → Deduplicate → Generate
+Speed: Slower (multiple retrievals + deduplication)
+
+3. Rewrite Route - Queries: How does it work? or Tell me more about that - without any context
+When: Vague or unclear questions with missing context
+What it does: Rewrites query for clarity, then standard retrieval
+Process: Query → LLM rewrite → Retrieve with improved query → Generate
+Speed: Moderate (one extra LLM call for rewriting)
+
+4. Fallback - What's the weather like today?
+If no relevant docs found, automatically tries rewrite strategy
+Prevents empty responses
+
+=======================================================================================================================================
+4-Corrective RAG - Document Grading + Web Search:
+
+Should Use Local Docs Only:
+"What is Python programming?" (tech_docs - clear match)
+"What is your return policy?" (faq_data - perfect match)
+"Can you tell me about Smart City Technology?" (news_articles - 2 out of 3 match so decides to go with local docs)
+
+
+Should Trigger Correction with Web Search:
+"What are the latest Python 3.12 features?" (tech_docs - temporal mismatch)
+"Current cybersecurity threats in 2024" (news_articles - needs current info)
+
+=======================================================================================================================================
+5-HyDE
+ "What are the security considerations for cloud computing?" on tech_docs
+This should:
+Generate a detailed hypothetical document about cloud security
+Use that synthetic document to find relevant real documents (Cloud Computing, Cybersecurity, DevOps)
+Show how HyDE bridges the gap between the query and available content
+
+How is technology changing healthcare? (on news_articles) 
+What are the emerging trends in artificial intelligence? (on tech_docs) 
+How do I resolve shipping and payment issues together? (on faq_data)
+
+=======================================================================================================================================
+6-Self-RAG
+Key Features:
+1. Multi-Stage Self-Reflection
+Document relevance grading: Filters retrieved documents before generation
+Hallucination checking: Ensures response is grounded in facts
+Question relevance checking: Verifies response actually addresses the query
+
+2. Retry Mechanisms
+Up to 2 retries with improved queries (last try accepts even if 1 document is relevant)
+Query rewriting when documents are insufficient
+Generation retries when quality checks fail
+
+3. Quality Control Process
+Documents must pass relevance check to be used
+Generated responses must be both grounded AND relevant
+Clear feedback on why retries are triggered
+
+Query:
+How do APIs work with different database systems in software development? (on tech_docs) - good example to show query re-writing working
+What happens if my item is damaged during shipping and I need to return it? (on faq_data)
+What are recent advances in AI and healthcare technology?
+
+=======================================================================================================================================
+7-Agentic RAG
+Technology + Business Process:
+"How do modern DevOps practices affect customer support and business operations?"
+Planning Agent: Detects complex, multi-domain query
+Research Agent: Searches tech_docs (DevOps) + faq_data (support operations)
+Synthesis Agent: Combines technical and business perspectives
+
+How have recent AI developments changed business practices and customer expectations?
+Used 8 information pieces from 4 sources (news_articles: 3, tech_docs: 2, faq_data: 2, web search: 1)
+
+=======================================================================================================================================
+8-Specualtive RAG
+
+How do containerization, orchestration, and cloud computing work together in modern software deployment?
+Compare Docker containers vs Kubernetes orchestration
+1. Multi-Perspective Sampling
+* Retrieves more documents (6) than standard RAG
+* Creates multiple document subsets from different perspectives
+* Each subset provides a different "view" of the available information
+2. Parallel Draft Generation
+* Generates multiple draft responses using different document subsets
+* Each draft may capture different aspects of the answer
+* Uses a specialized drafter model with higher temperature for creativity
+3. Verification & Scoring
+* Each draft gets scored (1-10) by a verification agent
+* Verifier checks how well the answer is supported by evidence
+* Uses lower temperature for more consistent scoring
+4. Best Response Selection
+* Selects the highest-scoring draft as the final answer
+* Provides transparency about which draft was chosen and why
+
+Enhancements:
+1. Differentiated Verification Approaches
+Each draft now gets evaluated with a different focus:
+
+Draft 1: Extra critical on factual accuracy and evidence support
+Draft 2: Extra critical on completeness and depth
+Draft 3: Extra critical on clarity and organization
+
+2. Harsher Baseline Expectations
+
+Changed scoring guidance to expect most answers in the 4-7 range
+Made 8+ scores much harder to achieve
+Increased penalty ranges for common issues
+
+3. Small Random Variation
+
+Adds ±0.3 variation to break ties when LLM gives identical scores
+This ensures differentiation even when content quality is similar
+Preserves the relative ranking while preventing exact ties
+
+=======================================================================================================================================
+9-Fusion RAG
+How do containerization technologies work with orchestration platforms in modern development? \
+(Should pull documents about Docker, Kubernetes, DevOps, microservices, and cloud computing)
+
+What's the complete process for handling a damaged international shipment?
+(Should pull from multiple FAQ categories: damage policy, international shipping, returns, customer support)
+
+How are recent AI developments changing both healthcare and business operations?
+(Should pull from AI breakthrough news, VR healthcare training, no-code AI platforms, and digital health articles)

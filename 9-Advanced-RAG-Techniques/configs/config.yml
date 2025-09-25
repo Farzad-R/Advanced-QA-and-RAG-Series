@@ -1,0 +1,56 @@
+chroma_db_path: "data/chroma_db"
+embedding_model: "text-embedding-3-small"
+
+corrective_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  top_k: 3
+
+adaptive_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  standard_retrieval_top_k: 3
+  multi_retrieval_first_top_k: 3
+  multi_retrieval_second_top_k: 2
+
+agentic_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  top_k: 3
+  other_retrieval_top_k: 2
+
+conversational_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  top_k: 5
+
+fusion_rag:
+  query_generator_llm_model: "gpt-4o-mini"
+  query_generator_temperature: 0.3
+  answer_generator_llm_model: "gpt-4o-mini"
+  answer_generator_temperature: 0.2
+  top_k: 5
+
+hyde_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  hypothetical_doc_retrieval_top_k: 3
+  direct_retrieval_top_k: 3
+
+self_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  top_k: 3
+
+speculative_rag:
+  drafter_llm_model: "gpt-4o-mini"
+  drafter_temperature: 0.7
+  verifier_llm_model: "gpt-4o-mini"
+  verifier_temperature: 0.0
+  top_k: 6
+
+standard_rag:
+  llm_model: "gpt-4o-mini"
+  temperature: 0.0
+  top_k: 3
+  
