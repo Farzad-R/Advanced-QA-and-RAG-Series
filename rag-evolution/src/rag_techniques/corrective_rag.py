@@ -1,27 +1,25 @@
-import os
+
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from pydantic import BaseModel, Field
+from src.load_config import APPConfig
+import chromadb
+from langchain.schema import Document
+from openai import OpenAI
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class CorrectiveRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
         self.llm = ChatOpenAI(
-            model=APP_CONFIG["corrective_rag"]["llm_model"],
-            temperature=APP_CONFIG["corrective_rag"]["temperature"]
+            model=APP_CONFIG.corrective_rag.llm_model,
+            temperature=APP_CONFIG.corrective_rag.temperature
         )
         self.logs = []
         self.retrievers = {}
@@ -34,11 +32,8 @@ class CorrectiveRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -137,7 +132,6 @@ class CorrectiveRAG:
             self._log(
                 "Web Search: Using OpenAI's web search tool (minimal tokens)")
 
-            from openai import OpenAI
             client = OpenAI()
 
             # Create a more focused search query
@@ -145,7 +139,7 @@ class CorrectiveRAG:
             focused_query = f"Brief summary: {query[:50]}"
 
             response = client.responses.create(
-                model="gpt-5",
+                model=APP_CONFIG.corrective_rag.web_search_model,
                 tools=[{
                     "type": "web_search_preview",
                     "search_context_size": "low"
@@ -231,7 +225,7 @@ class CorrectiveRAG:
             # Step 1: Initial retrieval
             self._log("Step 1: Initial document retrieval from local database")
             documents = retriever.get_relevant_documents(
-                query, k=APP_CONFIG["corrective_rag"]["top_k"])
+                query, k=APP_CONFIG.corrective_rag.top_k)
             self._log(f"Retrieved {len(documents)} documents from {dataset}")
 
             # Step 2: Grade documents and decide on web search

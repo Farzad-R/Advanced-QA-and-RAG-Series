@@ -1,24 +1,21 @@
-import os
 from typing import List, Tuple, Dict, Any
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+from langchain.schema import Document
+from openai import OpenAI
+import chromadb
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class AgenticRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
-        self.llm = ChatOpenAI(model=APP_CONFIG["corrective_rag"]["llm_model"],
-                              temperature=APP_CONFIG["corrective_rag"]["temperature"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
+        self.llm = ChatOpenAI(model=APP_CONFIG.corrective_rag.llm_model,
+                              temperature=APP_CONFIG.corrective_rag.temperature)
         self.logs = []
         self.retrievers = {}
         self._setup_retrievers()
@@ -30,11 +27,8 @@ class AgenticRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -187,7 +181,7 @@ class AgenticRAG:
             if dataset in self.retrievers:
                 retriever = self.retrievers[dataset]
                 documents = retriever.get_relevant_documents(
-                    query, k=APP_CONFIG["agentic_rag"]["top_k"])
+                    query, k=APP_CONFIG.agentic_rag.top_k)
 
                 if documents:
                     self._log(
@@ -210,7 +204,7 @@ class AgenticRAG:
                 if other_dataset in self.retrievers:
                     other_retriever = self.retrievers[other_dataset]
                     other_docs = other_retriever.get_relevant_documents(
-                        query, k=APP_CONFIG["agentic_rag"]["other_retrieval_top_k"])
+                        query, k=APP_CONFIG.agentic_rag.other_retrieval_top_k)
 
                     if other_docs:
                         self._log(
@@ -234,7 +228,7 @@ class AgenticRAG:
                 if other_dataset in self.retrievers:
                     other_retriever = self.retrievers[other_dataset]
                     other_docs = other_retriever.get_relevant_documents(
-                        query, k=APP_CONFIG["agentic_rag"]["other_retrieval_top_k"])
+                        query, k=APP_CONFIG.agentic_rag.other_retrieval_top_k)
 
                     if other_docs:
                         self._log(
@@ -266,11 +260,10 @@ class AgenticRAG:
         self._log("Agent: Tool Agent performing web search for current information")
 
         try:
-            from openai import OpenAI
             client = OpenAI()
 
             response = client.responses.create(
-                model="gpt-4o-mini",
+                model=self.llm,
                 tools=[{
                     "type": "web_search_preview",
                     "search_context_size": "low"

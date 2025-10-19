@@ -1,28 +1,23 @@
-import os
 from typing import List, Tuple, Literal
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from pydantic import BaseModel, Field
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 from langchain.prompts import ChatPromptTemplate
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class AdaptiveRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
         self.llm = ChatOpenAI(
-            model=APP_CONFIG["adaptive_rag"]["llm_model"],
-            temperature=APP_CONFIG["adaptive_rag"]["temperature"]
+            model=APP_CONFIG.adaptive_rag.llm_model,
+            temperature=APP_CONFIG.adaptive_rag.temperature
         )
         self.logs = []
         self.retrievers = {}
@@ -35,11 +30,8 @@ class AdaptiveRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -218,7 +210,7 @@ class AdaptiveRAG:
         self._log("Step 1: Standard retrieval - single similarity search")
         retriever = self.retrievers[dataset]
         docs = retriever.get_relevant_documents(
-            query, k=APP_CONFIG["adaptive_rag"]["standard_retrieval_top_k"])
+            query, k=APP_CONFIG.adaptive_rag.standard_retrieval_top_k)
         self._log(
             f"Retrieved {len(docs)} documents using standard similarity search")
         return docs
@@ -230,13 +222,13 @@ class AdaptiveRAG:
         # First retrieval
         retriever = self.retrievers[dataset]
         docs1 = retriever.get_relevant_documents(
-            query, k=APP_CONFIG["adaptive_rag"]["multi_retrieval_first_top_k"])
+            query, k=APP_CONFIG.adaptive_rag.multi_retrieval_first_top_k)
         self._log(f"Initial retrieval: {len(docs1)} documents")
 
         # Generate alternative query formulations for complex topics
         alt_query_prompt = f"Alternative ways to search for: {query}"
         docs2 = retriever.get_relevant_documents(
-            alt_query_prompt, k=APP_CONFIG["adaptive_rag"]["multi_retrieval_second_top_k"])
+            alt_query_prompt, k=APP_CONFIG.adaptive_rag.multi_retrieval_second_top_k)
         self._log(f"Alternative search: {len(docs2)} additional documents")
 
         # Combine and deduplicate

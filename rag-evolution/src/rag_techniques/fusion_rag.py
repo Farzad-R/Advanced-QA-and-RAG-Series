@@ -1,31 +1,27 @@
-import os
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain.load import dumps, loads
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class FusionRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
         self.query_generator_llm = ChatOpenAI(
             # For query generation
-            model=APP_CONFIG["fusion_rag"]['query_generator_llm_model'],
-            temperature=APP_CONFIG["fusion_rag"]['query_generator_temperature']
+            model=APP_CONFIG.fusion_rag.query_generator_llm_model,
+            temperature=APP_CONFIG.fusion_rag.query_generator_temperature
         )
         self.answer_generator_llm = ChatOpenAI(
-            model=APP_CONFIG["fusion_rag"]["answer_generator_llm_model"],
-            temperature=APP_CONFIG["fusion_rag"]["answer_generator_temperature"]
+            model=APP_CONFIG.fusion_rag.answer_generator_llm_model,
+            temperature=APP_CONFIG.fusion_rag.answer_generator_temperature
         )  # For final answer
         self.logs = []
         self.retrievers = {}
@@ -38,11 +34,8 @@ class FusionRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -191,7 +184,7 @@ Answer:""")
 
         for i, query in enumerate(queries, 1):
             documents = retriever.get_relevant_documents(
-                query, k=APP_CONFIG["fusion_rag"]["top_k"])
+                query, k=APP_CONFIG.fusion_rag.top_k)
             all_results.append(documents)
             self._log(
                 f"Search approach {i} found {len(documents)} relevant documents")

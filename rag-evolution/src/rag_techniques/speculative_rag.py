@@ -1,32 +1,28 @@
-import os
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 import random
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class SpeculativeRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
         self.drafter_llm = ChatOpenAI(
             # For generating drafts
-            model=APP_CONFIG["speculative_rag"]["drafter_llm_model"],
-            temperature=APP_CONFIG["speculative_rag"]["drafter_temperature"]
+            model=APP_CONFIG.speculative_rag.drafter_llm_model,
+            temperature=APP_CONFIG.speculative_rag.drafter_temperature
         )
         # Lower temp for consistent scoring
         self.verifier_llm = ChatOpenAI(
-            model=APP_CONFIG["speculative_rag"]["verifier_llm_model"],
-            temperature=APP_CONFIG["speculative_rag"]["verifier_temperature"]
+            model=APP_CONFIG.speculative_rag.verifier_llm_model,
+            temperature=APP_CONFIG.speculative_rag.verifier_temperature
         )
         self.logs = []
         self.retrievers = {}
@@ -39,11 +35,8 @@ class SpeculativeRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -317,7 +310,7 @@ Answer:""")
             retriever = self.retrievers[dataset]
             documents = retriever.get_relevant_documents(
                 # Get more docs for better sampling
-                query, k=APP_CONFIG["speculative_rag"]["top_k"])
+                query, k=APP_CONFIG.speculative_rag.top_k)
 
             if not documents:
                 self._log("No documents retrieved")

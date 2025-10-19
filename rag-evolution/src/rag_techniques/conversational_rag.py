@@ -1,25 +1,21 @@
-import os
 from typing import List, Tuple, Dict
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class ConversationalRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
-        self.llm = ChatOpenAI(model=APP_CONFIG["conversational_rag"]["llm_model"],
-                              temperature=APP_CONFIG["conversational_rag"]["temperature"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
+        self.llm = ChatOpenAI(model=APP_CONFIG.conversational_rag.llm_model,
+                              temperature=APP_CONFIG.conversational_rag.temperature)
         self.logs = []
         self.retrievers = {}
         self._setup_retrievers()
@@ -30,11 +26,8 @@ class ConversationalRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -184,7 +177,7 @@ class ConversationalRAG:
                 self._log(
                     "Step 1: Retrieving documents with conversation awareness")
                 docs = retriever.get_relevant_documents(
-                    contextual_query, k=APP_CONFIG["conversational_rag"]["top_k"])
+                    contextual_query, k=APP_CONFIG.conversational_rag.top_k)
                 formatted = format_docs(docs)
                 self._log(
                     "Step 2: Generating response with memory + retrieved context")

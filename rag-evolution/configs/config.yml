@@ -3,6 +3,7 @@ embedding_model: "text-embedding-3-small"
 
 corrective_rag:
   llm_model: "gpt-4o-mini"
+  web_search_model: "gpt-5"
   temperature: 0.0
   top_k: 3
 

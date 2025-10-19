@@ -1,18 +1,11 @@
 import chromadb
 from openai import OpenAI
 from typing import List, Dict
-import os
-import yaml
 from pyprojroot import here
-from dotenv import load_dotenv
-from pyprojroot import here
-load_dotenv()
+from load_config import APPConfig
 
-# Set API key
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+# Load application configuration
+APP_CONFIG = APPConfig().load()
 
 
 # Configure OpenAI Client - using the same pattern as your working file
@@ -22,13 +15,13 @@ client = OpenAI()  # Will use OPENAI_API_KEY from environment
 class DataPrep:
     def __init__(self):
         self.client = chromadb.PersistentClient(
-            path=str(here(APP_CONFIG["chroma_db_path"])))
+            path=str(here(APP_CONFIG.chroma_db_path)))
 
     def _get_embedding(self, text: str) -> List[float]:
         """Get OpenAI embedding for text using latest model"""
         try:
             response = client.embeddings.create(
-                model=APP_CONFIG["embedding_model"],  # Latest embedding model
+                model=APP_CONFIG.embedding_model,  # Latest embedding model
                 input=text,
                 encoding_format="float"
             )

@@ -1,25 +1,21 @@
-import os
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class HydeRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
-        self.llm = ChatOpenAI(model=APP_CONFIG["hyde_rag"]["llm_model"],
-                              temperature=APP_CONFIG["hyde_rag"]["temperature"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
+        self.llm = ChatOpenAI(model=APP_CONFIG.hyde_rag.llm_model,
+                              temperature=APP_CONFIG.hyde_rag.temperature)
         self.logs = []
         self.retrievers = {}
         self._setup_retrievers()
@@ -31,11 +27,8 @@ class HydeRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -165,7 +158,7 @@ class HydeRAG:
 
         # Use hypothetical document for retrieval instead of original query
         documents = retriever.get_relevant_documents(
-            hypothetical_doc, k=APP_CONFIG["hyde_rag"]["hypothetical_doc_retrieval_top_k"])
+            hypothetical_doc, k=APP_CONFIG.hyde_rag.hypothetical_doc_retrieval_top_k)
 
         self._log(
             f"HyDE Retrieval: Found {len(documents)} documents using hypothetical embedding")
@@ -195,7 +188,7 @@ class HydeRAG:
                 # Fallback to direct retrieval if HyDE fails
                 retriever = self.retrievers[dataset]
                 documents = retriever.get_relevant_documents(
-                    query, k=APP_CONFIG["hyde_rag"]["direct_retrieval_top_k"])
+                    query, k=APP_CONFIG.hyde_rag.direct_retrieval_top_k)
                 self._log(
                     f"Fallback retrieval: Found {len(documents)} documents")
 

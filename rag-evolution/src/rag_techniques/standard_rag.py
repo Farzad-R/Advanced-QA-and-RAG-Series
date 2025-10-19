@@ -1,26 +1,22 @@
-import os
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
+from src.load_config import APPConfig
+import chromadb
+from langchain.schema import Document
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class StandardRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
         self.llm = ChatOpenAI(
-            model=APP_CONFIG["standard_rag"]["llm_model"],
-            temperature=APP_CONFIG["standard_rag"]["temperature"]
+            model=APP_CONFIG.standard_rag.llm_model,
+            temperature=APP_CONFIG.standard_rag.temperature
         )
         self.logs = []
         self.retrievers = {}
@@ -33,11 +29,8 @@ class StandardRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -122,7 +115,7 @@ class StandardRAG:
             def retrieve_and_format(query_input):
                 self._log("Step 1: Retrieving relevant documents")
                 docs = retriever.get_relevant_documents(
-                    query_input, k=APP_CONFIG["standard_rag"]["top_k"])
+                    query_input, k=APP_CONFIG.standard_rag.top_k)
                 formatted = format_docs(docs)
                 self._log("Step 2: Generating response with retrieved context")
                 return formatted

@@ -1,26 +1,23 @@
-import os
 from typing import List, Tuple
-from dotenv import load_dotenv
 from pyprojroot import here
-import yaml
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 from pydantic import BaseModel, Field
+import chromadb
+from langchain.schema import Document
+from src.load_config import APPConfig
 
-load_dotenv()
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
-with open(here("configs/config.yml")) as cfg:
-    APP_CONFIG = yaml.load(cfg, Loader=yaml.FullLoader)
+APP_CONFIG = APPConfig().load()
 
 
 class SelfRAG:
     def __init__(self):
-        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG["embedding_model"])
-        self.llm = ChatOpenAI(model=APP_CONFIG["self_rag"]["llm_model"],
-                              temperature=APP_CONFIG["self_rag"]["temperature"])
+        self.embeddings = OpenAIEmbeddings(model=APP_CONFIG.embedding_model)
+        self.llm = ChatOpenAI(model=APP_CONFIG.self_rag.llm_model,
+                              temperature=APP_CONFIG.self_rag.temperature)
         self.logs = []
         self.retrievers = {}
         self._setup_retrievers()
@@ -32,11 +29,8 @@ class SelfRAG:
 
         for dataset in datasets:
             try:
-                import chromadb
-                from langchain.schema import Document
-
                 chroma_client = chromadb.PersistentClient(
-                    path=str(here(APP_CONFIG["chroma_db_path"])))
+                    path=str(here(APP_CONFIG.chroma_db_path)))
                 collection = chroma_client.get_collection(dataset)
 
                 class CustomRetriever:
@@ -319,7 +313,7 @@ class SelfRAG:
                 # Step 1: Retrieve documents
                 self._log("Step 1: Initial document retrieval")
                 documents = retriever.get_relevant_documents(
-                    current_query, k=APP_CONFIG["self_rag"]["top_k"])
+                    current_query, k=APP_CONFIG.self_rag.top_k)
                 self._log(
                     f"Retrieved {len(documents)} documents from {dataset}")
 
